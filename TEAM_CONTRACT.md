@@ -9,7 +9,7 @@ Teammates:
 | Name | GitHub handle | Preferred contact hours (with timezone) | Best pronounceable phonetic (for Demo Day intro) |
 |---|---|---|---|
 | Nayef | Naefadwan | 09:00–17:00 (Amman, GMT+3), after 2 PM most reliable | <TO FILL> |
-| Yusra | yousra-mansour | After 14:00 (Amman, GMT+3) | Yoo-sra |
+| Yusra | yousra-mansour | <TO FILL: Yusra to add> | <TO FILL> |
 | Eshraq | eshraqallawama18 | <TO FILL: Eshraq to add> | <TO FILL> |
 | Hosam | hosam70alkhwalda-pixel | <TO FILL: Hosam to add> | <TO FILL> |
 
@@ -18,7 +18,7 @@ Teammates:
 2.1 Each teammate's key strengths
 
 - Teammate 1 (Nayef): Infrastructure/DevOps, testing (unit/integration/eval harness setup), cybersecurity background, cross-cutting technical support across the stack.
-- Teammate 2 (Yusra): Backend development. AI/ML application development, healthcare ERP systems (Frappe/ERPNext).
+- Teammate 2 (Yusra): Backend development. <TO FILL: Yusra to add 1–2 more strengths>
 - Teammate 3 (Eshraq): Frontend development. <TO FILL: Eshraq to add 1–2 more strengths>
 - Teammate 4 (Hosam): Evaluation and monitoring,<TO FILL: Hosam to add 1 more strength if desired>
 
@@ -29,13 +29,13 @@ Given this split, Yusra takes point on backend/API and data acquisition, Eshraq 
 2.3 What each teammate wants to develop
 
 - Teammate 1 (Nayef): <TO FILL: Nayef's growth goal — e.g. "shipping a live-URL deployment" or similar>
-- Teammate 2 (Yusra):Gain hands-on experience building and deploying production-ready AI applications.
+- Teammate 2 (Yusra): <TO FILL: Yusra to add>
 - Teammate 3 (Eshraq): <TO FILL: Eshraq to add>
 - Teammate 4 (Hosam): <TO FILL: Hosam to add>
 
 2.4 Day-to-day work approach
 
-- Daily syncs: <TO FILL: exact time>, after 2 PM Amman time . Platform: google meet . Target length: 15 minutes.
+- Daily syncs:after 2 PM Amman time . Platform: google meet . Target length: 15 minutes.
 - Shared view of work: Clickup.
 - Ensuring meaningful ownership: each teammate owns a full vertical slice tied to their strength (backend, frontend, eval/monitoring, infra/testing) rather than isolated small tasks, and everyone pairs at least once outside their primary area (per §5.2) so ownership stays balanced and no one is stuck only with "the easy bit."
 
@@ -97,7 +97,7 @@ The team pairs with the teammate who is behind so they can learn and still contr
 4.5 Ensuring every voice is heard
 One to two sentences per teammate: what would a “safe environment” look like for you during a technical disagreement or a moment when you’re behind on your part?
 - Teammate 1 (Nayef): <TO FILL>
-- Teammate 2 (Yusra): : A safe environment is one where everyone can ask questions, share ideas, and make mistakes without fear of judgment. If I'm behind on a task, I value open communication, constructive feedback, and collaborative problem-solving to get back on track.
+- Teammate 2 (Yusra): <TO FILL>
 - Teammate 3 (Eshraq): <TO FILL>
 - Teammate 4 (Hosam): <TO FILL>
 
@@ -149,7 +149,7 @@ The team merges to main daily during sync plus on-demand for blocker unblocks. A
 - Every task is a card with an owner; no unassigned cards in In progress.
 - Automations: PR opened → In review; PR merged → Done.
 - If a card sits in In progress for more than 24 hours without a note, it's raised at standup.
-- Daily standup: <TO FILL: time, timezone> on <TO FILL: platform>. Each teammate answers: what did I finish yesterday, what will I finish today, what's blocking me. 15 minutes max.
+- Daily standup: after 14:00 on Google meet . Each teammate answers: what did I finish yesterday, what will I finish today, what's blocking me. 15 minutes max.
 
 6.6 Post-cohort plan for your GitHub org
 
@@ -162,7 +162,7 @@ The team merges to main daily during sync plus on-demand for blocker unblocks. A
 7. Sign-off
 
 - Teammate 1 (@Naefadwan) — <TO FILL: reviewed and agrees>
-- Teammate 2 (@yousra-mansour) — Reviewed and agrees.
+- Teammate 2 (@yousra-mansour) — <TO FILL>
 - Teammate 3 (@eshraqallawama18) — <TO FILL>
 - Teammate 4 (@hosam70alkhwalda-pixel) — <TO FILL>
 
