@@ -8,10 +8,10 @@ Teammates:
 
 | Name | GitHub handle | Preferred contact hours (with timezone) | Best pronounceable phonetic (for Demo Day intro) |
 |---|---|---|---|
-| Nayef | Naefadwan | 09:00–17:00 (Amman, GMT+3), after 2 PM most reliable | <TO FILL> |
+| Nayef | Naefadwan | 09:00–17:00 (Amman, GMT+3), after 2 PM most reliable | NAH-yef |
 | Yusra | yousra-mansour | After 14:00 (Amman, GMT+3) | Yoo-sra |
 | Eshraq | eshraqallawama18 |  09:00–17:00 (Amman, GMT+3) | iishraq |
-| Hosam | hosam70alkhwalda-pixel | <TO FILL: Hosam to add> | <TO FILL> |
+| Hosam | hosam70alkhwalda-pixel | 09:00–17:00 (Amman, GMT+3), after 2 PM most reliable | hoh-SAHM al-KHWAL-deh|
 
 2. Cooperation Plan
 
@@ -30,10 +30,10 @@ Given this split, Yusra takes point on backend/API and data acquisition, Eshraq 
 
 2.3 What each teammate wants to develop
 
-- Teammate 1 (Nayef): <TO FILL: Nayef's growth goal — e.g. "shipping a live-URL deployment" or similar>
+- Teammate 1 (Nayef):Gain hands-on experience building and deploying production-ready AI applications.
 - Teammate 2 (Yusra):Gain hands-on experience building and deploying production-ready AI applications.
 - Teammate 3 (Eshraq): Teammate 3 (Eshraq): Strengthen my frontend development and AI/ML skills through hands-on experience building and integrating AI-powered applications.
-- Teammate 4 (Hosam): <TO FILL: Hosam to add>
+- Teammate 4 (Hosam): Gain hands-on experience designing scalable backend systems, building production-ready APIs, and implementing evaluation and monitoring for AI applications.
 
 2.4 Day-to-day work approach
 
@@ -77,7 +77,7 @@ Confirmation:
 - Teammate 1 (Nayef): 09:00–17:00 Amman time (GMT+3); most reliably available after 2 PM.
 - Teammate 2 (Yusra): 14:00–19:00 Amman time (GMT+3).
 - Teammate 3 (Eshraq): 09:00–17:00 Amman time (GMT+3).
-- Teammate 4 (Hosam): <TO FILL>
+- Teammate 4 (Hosam): 09:00–17:00 Amman time (GMT+3); most reliably available after 2 PM.
 
 Team daily sync time: 2 on zoom.
 
@@ -142,7 +142,7 @@ Confirmation:
 6.2 Branch strategy
 
 - main: production-ready; all PRs land here after review.
-- dev: <TO FILL — decide if you want a staging branch, or skip in favor of feature-branch → main directly>.
+- dev: feature-branch.
 - Feature branches: feature/<slug> or <teammate-github>/<slug>. One task per branch. Delete branches after merge.
 
 6.3 PR review workflow
