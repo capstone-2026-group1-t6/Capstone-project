@@ -22,7 +22,7 @@ Teammates:
 - Teammate 3 (Eshraq): Frontend development.
 AI/ML 
 
-- Teammate 4 (Hosam): Evaluation and monitoring,<TO FILL: Hosam to add 1 more strength if desired>
+- Teammate 4 (Hosam): Evaluation and monitoring,Backend development (API design and implementation), database design and integration, evaluation and monitoring, performance optimization, and cross-service integration across the backend stack.
 
 2.2 How your team will use those strengths
 
