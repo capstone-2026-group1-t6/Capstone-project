@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+prometheus-fastapi-instrumentator
+httpx
+python-multipart
+numpy
+pytest 
