@@ -178,4 +178,6 @@ The team merges to main daily during sync plus on-demand for blocker unblocks. A
 
 Date completed: 2026-7-6
 
+8. Mid-sprint revisit
+Bring this contract to your Progress Check Zoom appointment (Thu 9 or Sun 12 Jul). Skim it together. If anything is not working — communication cadence, workload balance, git flow — say so, and update the contract with agreed changes. Committing an amended TEAM_CONTRACT.md mid-sprint is not a failure; it is exactly how a team contract earns its keep.
 
