@@ -1,8 +1,8 @@
 1. Team roster
 
-Team slug (assigned): <TO FILL: team slug e.g. group1-team1>
+Team slug (assigned): Group1-team6
 
-Team name (self-chosen post-kickoff; may be blank at contract time): TBD — not chosen yet
+Team name (self-chosen post-kickoff; may be blank at contract time):The Builders
 
 Teammates:
 
@@ -66,7 +66,7 @@ More-experienced teammates coach by explaining reasoning and pointing to resourc
 If the team cannot resolve a conflict internally, a message is sent to the Leadership Team via Slack.
 
 Confirmation: 
-- Nayef: agrees 
+- Teammate 1  Nayef: agrees 
 - Teammate 2 (Yusra): agrees
 - Teammate 3 (Eshraq): agrees
 - Teammate 4 (Hosam): agrees 
@@ -86,7 +86,7 @@ Team daily sync time: 2 on zoom.
 - Async text: Slack channel g1-t6 
 - Live meetings: Google Meet 
 - Code review: GitHub PRs on team repo
-- Shared docs: <TO FILL: Google Drive folder link>
+- Shared docs: https://drive.google.com/drive/folders/1EvpYe9HauxnYVRBM_7Cx7IysHB17tLxx?usp=sharing
 
 4.3 After-hours + weekend expectations
 
