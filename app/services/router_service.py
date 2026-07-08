@@ -6,11 +6,14 @@ back to hybrid rather than guessing, and callers may pass `forced_strategy`
 to bypass the router entirely (manual override).
 """
 
+import logging
 from dataclasses import dataclass
 from enum import Enum
 
 from app.core.config import settings
 from app.core.observability import RETRIEVAL_ROUTER_CONFIDENCE, RETRIEVAL_STRATEGY_SELECTED
+
+logger = logging.getLogger(__name__)
 
 
 class Strategy(str, Enum):
@@ -27,12 +30,12 @@ class RoutingDecision:
 
 
 class RouterService:
-    """Classifier stub: query pattern -> {vector, hybrid, graph}.
+    """Picks a retrieval strategy for a query.
 
-    The real classifier (rule-based first pass, upgradeable to a small
-    fine-tuned model) is Hosam/Yusra's sprint deliverable. This class defines
-    the contract every caller and test depends on, so it can be swapped in
-    without touching app/routers/query.py.
+    `classifier` is anything with an async .predict(query) -> (str, float)
+    method — RuleBasedClassifier (app/services/query_classifier.py) for now,
+    swappable later for a fine-tuned model without touching this class or
+    app/routers/query.py.
     """
 
     def __init__(self, classifier=None):
@@ -42,14 +45,30 @@ class RouterService:
         if forced_strategy is not None:
             return RoutingDecision(strategy=forced_strategy, confidence=1.0, fell_back=False)
 
-        if self.classifier is None:
+        if not query or not query.strip():
+            logger.warning("RouterService.route called with an empty query; defaulting to hybrid")
             decision = RoutingDecision(strategy=Strategy.HYBRID, confidence=0.0, fell_back=True)
+
+        elif self.classifier is None:
+            logger.warning("RouterService.route called with no classifier configured; defaulting to hybrid")
+            decision = RoutingDecision(strategy=Strategy.HYBRID, confidence=0.0, fell_back=True)
+
         else:
-            predicted_strategy, confidence = await self.classifier.predict(query)
-            if confidence < settings.router_confidence_threshold:
-                decision = RoutingDecision(strategy=Strategy.HYBRID, confidence=confidence, fell_back=True)
+            try:
+                predicted_strategy, confidence = await self.classifier.predict(query)
+                strategy = Strategy(predicted_strategy)
+            except ValueError:
+                # classifier returned a string that isn't "vector"/"hybrid"/"graph"
+                logger.exception("Classifier returned an invalid strategy for query=%r", query)
+                decision = RoutingDecision(strategy=Strategy.HYBRID, confidence=0.0, fell_back=True)
+            except Exception:
+                logger.exception("Classifier prediction failed for query=%r", query)
+                decision = RoutingDecision(strategy=Strategy.HYBRID, confidence=0.0, fell_back=True)
             else:
-                decision = RoutingDecision(strategy=Strategy(predicted_strategy), confidence=confidence, fell_back=False)
+                if confidence < settings.router_confidence_threshold:
+                    decision = RoutingDecision(strategy=Strategy.HYBRID, confidence=confidence, fell_back=True)
+                else:
+                    decision = RoutingDecision(strategy=strategy, confidence=confidence, fell_back=False)
 
         RETRIEVAL_STRATEGY_SELECTED.labels(strategy=decision.strategy.value).inc()
         RETRIEVAL_ROUTER_CONFIDENCE.labels(strategy=decision.strategy.value).observe(decision.confidence)
