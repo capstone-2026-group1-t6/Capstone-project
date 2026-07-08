@@ -8,4 +8,4 @@ The **Multipurpose RAG System** solves this by letting anyone upload their own d
 
 The platform is built to work with any organization's data, not just one use case. For this project, it is demonstrated using a realistic simulated company dataset spanning planning, engineering, sales, and customer support documents, showing how a small team (5–15 people) with no dedicated technical infrastructure can get reliable answers from their own internal knowledge base within the hour.
 
-**Bottom line:** Faster, more trustworthy answers from internal knowledge — with no manual setup required for each new dataset .
+**Bottom line:** Faster, more trustworthy answers from internal knowledge — with no manual setup required for each new dataset  .
