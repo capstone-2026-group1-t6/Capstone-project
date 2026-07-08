@@ -32,7 +32,7 @@ Given this split, Yusra takes point on backend/API and data acquisition, Eshraq 
 
 - Teammate 1 (Nayef): <TO FILL: Nayef's growth goal — e.g. "shipping a live-URL deployment" or similar>
 - Teammate 2 (Yusra):Gain hands-on experience building and deploying production-ready AI applications.
-- Teammate 3 (Eshraq): Teammate 3 (Eshraq): Strengthen my frontend development and AI/ML skills through hands-on experience building and integrating AI-powered applications.
+Teammate 3 (Eshraq): Gain hands-on experience building and integrating production-ready AI-powered applications while strengthening my frontend development and AI/ML skills.
 - Teammate 4 (Hosam): <TO FILL: Hosam to add>
 
 2.4 Day-to-day work approach
@@ -100,7 +100,7 @@ The team pairs with the teammate who is behind so they can learn and still contr
 One to two sentences per teammate: what would a “safe environment” look like for you during a technical disagreement or a moment when you’re behind on your part?
 - Teammate 1 (Nayef): A safe environment is one where everyone can ask questions, share ideas, and make mistakes without fear of judgment. If I'm behind on a task, I value open communication, constructive feedback, and collaborative problem-solving to get back on track.
 - Teammate 2 (Yusra): : A safe environment is one where everyone can ask questions, share ideas, and make mistakes without fear of judgment. If I'm behind on a task, I value open communication, constructive feedback, and collaborative problem-solving to get back on track.
-- Teammate 3 (Eshraq): For Eshraq, a safe environment means treating everyone with respect, encouraging open communication, and giving everyone the opportunity to share their ideas. It also means accepting feedback and corrections without criticism or embarrassment, respecting different opinions, and working together to improve the final solution.
+- Teammate 3 (Eshraq): a safe environment means treating everyone with respect, encouraging open communication, and giving everyone the opportunity to share their ideas. It also means accepting feedback and corrections without criticism or embarrassment, respecting different opinions, and working together to improve the final solution.
 - Teammate 4 (Hosam):A safe environment is one where everyone can ask questions, share ideas, and make mistakes without fear of judgment. If I'm behind on a task, I value open communication, constructive feedback, and collaborative problem-solving to get back on track.
 
 5. Work Plan
