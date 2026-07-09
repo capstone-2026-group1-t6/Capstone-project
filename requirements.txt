@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+prometheus-fastapi-instrumentator
+httpx
+python-multipart
+numpy
+pytest 
+sentence-transformers==5.6.0

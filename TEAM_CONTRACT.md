@@ -1,17 +1,17 @@
 1. Team roster
 
-Team slug (assigned): <TO FILL: team slug e.g. group1-team1>
+Team slug (assigned): Group1-team6
 
-Team name (self-chosen post-kickoff; may be blank at contract time): TBD — not chosen yet
+Team name (self-chosen post-kickoff; may be blank at contract time):The Builders
 
 Teammates:
 
 | Name | GitHub handle | Preferred contact hours (with timezone) | Best pronounceable phonetic (for Demo Day intro) |
 |---|---|---|---|
-| Nayef | Naefadwan | 09:00–17:00 (Amman, GMT+3), after 2 PM most reliable | <TO FILL> |
+| Nayef | Naefadwan | 09:00–17:00 (Amman, GMT+3), after 2 PM most reliable | NAH-yef |
 | Yusra | yousra-mansour | After 14:00 (Amman, GMT+3) | Yoo-sra |
 | Eshraq | eshraqallawama18 |  09:00–17:00 (Amman, GMT+3) | iishraq |
-| Hosam | hosam70alkhwalda-pixel | <TO FILL: Hosam to add> | <TO FILL> |
+| Hosam | hosam70alkhwalda-pixel | 09:00–17:00 (Amman, GMT+3), after 2 PM most reliable | hoh-SAHM al-KHWAL-deh|
 
 2. Cooperation Plan
 
@@ -22,7 +22,7 @@ Teammates:
 - Teammate 3 (Eshraq): Frontend development.
 AI/ML 
 
-- Teammate 4 (Hosam): Evaluation and monitoring,<TO FILL: Hosam to add 1 more strength if desired>
+- Teammate 4 (Hosam): Evaluation and monitoring,Backend development (API design and implementation), database design and integration, evaluation and monitoring, performance optimization, and cross-service integration across the backend stack.
 
 2.2 How your team will use those strengths
 
@@ -30,7 +30,7 @@ Given this split, Yusra takes point on backend/API and data acquisition, Eshraq 
 
 2.3 What each teammate wants to develop
 
-- Teammate 1 (Nayef): <TO FILL: Nayef's growth goal — e.g. "shipping a live-URL deployment" or similar>
+- Teammate 1 (Nayef):Gain hands-on experience building and deploying production-ready AI applications.
 - Teammate 2 (Yusra):Gain hands-on experience building and deploying production-ready AI applications.
 Teammate 3 (Eshraq): Gain hands-on experience building and integrating production-ready AI-powered applications while strengthening my frontend development and AI/ML skills.
 - Teammate 4 (Hosam): <TO FILL: Hosam to add>
@@ -66,7 +66,7 @@ More-experienced teammates coach by explaining reasoning and pointing to resourc
 If the team cannot resolve a conflict internally, a message is sent to the Leadership Team via Slack.
 
 Confirmation: 
-- Nayef: agrees 
+- Teammate 1  Nayef: agrees 
 - Teammate 2 (Yusra): agrees
 - Teammate 3 (Eshraq): agrees
 - Teammate 4 (Hosam): agrees 
@@ -77,7 +77,7 @@ Confirmation:
 - Teammate 1 (Nayef): 09:00–17:00 Amman time (GMT+3); most reliably available after 2 PM.
 - Teammate 2 (Yusra): 14:00–19:00 Amman time (GMT+3).
 - Teammate 3 (Eshraq): 09:00–17:00 Amman time (GMT+3).
-- Teammate 4 (Hosam): <TO FILL>
+- Teammate 4 (Hosam): 09:00–17:00 Amman time (GMT+3); most reliably available after 2 PM.
 
 Team daily sync time: 2 on zoom.
 
@@ -86,7 +86,7 @@ Team daily sync time: 2 on zoom.
 - Async text: Slack channel g1-t6 
 - Live meetings: Google Meet 
 - Code review: GitHub PRs on team repo
-- Shared docs: <TO FILL: Google Drive folder link>
+- Shared docs: https://drive.google.com/drive/folders/1EvpYe9HauxnYVRBM_7Cx7IysHB17tLxx?usp=sharing
 
 4.3 After-hours + weekend expectations
 
@@ -142,7 +142,7 @@ Confirmation:
 6.2 Branch strategy
 
 - main: production-ready; all PRs land here after review.
-- dev: <TO FILL — decide if you want a staging branch, or skip in favor of feature-branch → main directly>.
+- dev: feature-branch.
 - Feature branches: feature/<slug> or <teammate-github>/<slug>. One task per branch. Delete branches after merge.
 
 6.3 PR review workflow
@@ -178,4 +178,6 @@ The team merges to main daily during sync plus on-demand for blocker unblocks. A
 
 Date completed: 2026-7-6
 
+8. Mid-sprint revisit
+Bring this contract to your Progress Check Zoom appointment (Thu 9 or Sun 12 Jul). Skim it together. If anything is not working — communication cadence, workload balance, git flow — say so, and update the contract with agreed changes. Committing an amended TEAM_CONTRACT.md mid-sprint is not a failure; it is exactly how a team contract earns its keep.
 
