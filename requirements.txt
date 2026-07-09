@@ -7,6 +7,6 @@ httpx
 python-multipart
 numpy
 datasets>=4.0
-sentence-transformers
+sentence-transformers==5.6.0
 faiss-cpu
 pytest
