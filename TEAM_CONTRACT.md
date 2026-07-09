@@ -173,7 +173,7 @@ The team merges to main daily during sync plus on-demand for blocker unblocks. A
 
 - Teammate 1 (@Naefadwan) - reviewed and agrees
 - Teammate 2 (@yousra-mansour) — Reviewed and agrees.
-- Teammate 3 (@eshraqallawama18) — Reviewed and agrees
+- Teammate 3 (@eshraqallawama18) — Reviewed and agrees.
 - Teammate 4 (@hosam70alkhwalda-pixel) — Reviewed and agrees 
 
 Date completed: 2026-7-6
