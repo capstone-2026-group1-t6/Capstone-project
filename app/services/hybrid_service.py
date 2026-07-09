@@ -4,7 +4,12 @@ Default retrieval path for unstructured document collections, and the
 fallback target when the router's confidence is low (Risk 1 mitigation).
 """
 
-from app.services.vector_service import RetrievedChunk, VectorService
+import logging
+
+from app.core.schemas import RetrievedChunk
+from app.services.vector_service import VectorService
+
+logger = logging.getLogger(__name__)
 
 
 class HybridService:
@@ -16,18 +21,31 @@ class HybridService:
         self.reranker = reranker
 
     async def retrieve(self, query: str, top_k: int = 5) -> list[RetrievedChunk]:
+        if not query or not query.strip():
+            return []
+
         vector_hits = await self.vector_service.retrieve(query, top_k=top_k * 2)
-        keyword_hits = (
-            await self.keyword_index.search(query, top_k=top_k * 2)
-            if self.keyword_index
-            else []
-        )
+
+        keyword_hits: list[RetrievedChunk] = []
+        if self.keyword_index is not None:
+            try:
+                keyword_hits = await self.keyword_index.search(query, top_k=top_k * 2)
+            except Exception:
+                logger.exception("Keyword search failed for query=%r; continuing with vector hits only", query)
+
         candidates = self._merge_candidates(vector_hits, keyword_hits)
 
         if self.reranker is not None and candidates:
-            candidates = await self.reranker.rerank(query, candidates)
+            try:
+                candidates = await self.reranker.rerank(query, candidates)
+            except Exception:
+                logger.exception("Reranking failed for query=%r; falling back to merged (unreranked) order", query)
 
-        return candidates[:top_k]
+        results = candidates[:top_k]
+        for chunk in results:
+            chunk.strategy = "hybrid"
+
+        return results
 
     @staticmethod
     def _merge_candidates(

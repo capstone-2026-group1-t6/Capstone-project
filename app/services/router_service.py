@@ -44,7 +44,12 @@ class RouterService:
     async def route(self, query: str, forced_strategy: Strategy | None = None) -> RoutingDecision:
         if forced_strategy is not None:
             return RoutingDecision(strategy=forced_strategy, confidence=1.0, fell_back=False)
-
+        
+        
+        # Defensive programming:
+        # Empty queries should normally be rejected by the API layer,
+        # but if they reach the router we return a safe fallback decision
+        # instead of raising an exception.
         if not query or not query.strip():
             logger.warning("RouterService.route called with an empty query; defaulting to hybrid")
             decision = RoutingDecision(strategy=Strategy.HYBRID, confidence=0.0, fell_back=True)
