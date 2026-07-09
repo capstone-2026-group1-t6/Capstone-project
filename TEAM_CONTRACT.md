@@ -76,7 +76,7 @@ Confirmation:
 
 - Teammate 1 (Nayef): 09:00–17:00 Amman time (GMT+3); most reliably available after 2 PM.
 - Teammate 2 (Yusra): 14:00–19:00 Amman time (GMT+3).
-- Teammate 3 (Eshraq): 09:00–17:00 Amman time (GMT+3).
+- Teammate 3 (Eshraq): 09:00–17:00 Amman time (GMT+3) .
 - Teammate 4 (Hosam): 09:00–17:00 Amman time (GMT+3); most reliably available after 2 PM.
 
 Team daily sync time: 2 on zoom.
