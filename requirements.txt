@@ -6,4 +6,7 @@ prometheus-fastapi-instrumentator
 httpx
 python-multipart
 numpy
-pytest 
+datasets>=4.0
+sentence-transformers
+faiss-cpu
+pytest
