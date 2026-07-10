@@ -19,6 +19,10 @@ class Settings(BaseSettings):
     default_top_k: int = 5
     max_chunks_per_corpus: int = 5000
 
+    # Reranker (HybridService's cross-encoder step)
+    cross_encoder_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    enable_reranker: bool = True
+
     # Latency budget (Success Criterion 2)
     max_query_latency_seconds: float = 5.0
 
