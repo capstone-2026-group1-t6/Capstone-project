@@ -1,9 +1,0 @@
-/* Minimal reset only — the real design system is Eshraq's to build. */
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: sans-serif;
-}
