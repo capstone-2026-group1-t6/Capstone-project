@@ -5,7 +5,7 @@ fallback target when the router's confidence is low (Risk 1 mitigation).
 """
 
 import logging
-
+from app.core.config import settings
 from app.core.schemas import RetrievedChunk
 from app.services.vector_service import VectorService
 
@@ -35,7 +35,7 @@ class HybridService:
 
         candidates = self._merge_candidates(vector_hits, keyword_hits)
 
-        if self.reranker is not None and candidates:
+        if settings.enable_reranker and self.reranker is not None and candidates:
             try:
                 candidates = await self.reranker.rerank(query, candidates)
             except Exception:
