@@ -14,7 +14,7 @@ const features = [
     icon: UploadCloud,
     title: "Ingest any document",
     description:
-      "Drop PDFs, docs, spreadsheets and notes. We chunk, embed and index them automatically for retrieval.",
+      "Drop PDFs, docs and any  notes. We chunk, embed and index them automatically for retrieval.",
   },
   {
     icon: MessageSquareText,
@@ -69,12 +69,12 @@ export default function Index() {
         />
 
         <div className="container relative flex flex-col items-center px-4 py-20 text-center sm:py-28">
-          <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/70 px-4 py-1.5 font-body text-xs font-medium text-ink/70 shadow-sm backdrop-blur">
-            <Sparkles size={14} className="text-brand-pink" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/70 px-4 py-1.5 font-body text-xs font-medium text-ink/70 shadow-sm backdrop-blur ">
+            <Sparkles size={14} className = "text-pink-500" />
             Internal Knowledge Platform
           </span>
 
-          <h1 className="mt-6 max-w-3xl font-sans text-4xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 max-w-3xl font-sans text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl md:text-6xl">
             Multipurpose RAG System
           </h1>
           <p className="mt-4 max-w-2xl font-body text-base text-muted-foreground sm:text-lg">
@@ -86,18 +86,22 @@ export default function Index() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               to="/upload"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 font-body text-sm font-semibold text-white shadow-lg shadow-ink/10 transition-transform hover:-translate-y-0.5"
-            >
-              <UploadCloud size={18} />
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-black/15 bg-black/100 px-6 py-3 font-body text-sm font-semibold text-white shadow-sm backdrop-blur transition-transform hover:-translate-y-0.5"
+              
+            > 
+              <UploadCloud size={24} />
+
               Upload documents
             </Link>
+
             <Link
               to="/chat"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white/80 px-6 py-3 font-body text-sm font-semibold text-ink shadow-sm backdrop-blur transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-black/15 bg-white/80 px-6 py-3 font-body text-sm font-semibold text-black shadow-sm backdrop-blur transition-transform hover:-translate-y-0.5"
             >
-              <MessageSquareText size={18} />
+              <MessageSquareText size={24} />
               Ask our AI
               <ArrowRight size={16} />
+
             </Link>
           </div>
         </div>
@@ -174,18 +178,20 @@ export default function Index() {
           </div>
         </div>
       </section>
+      
 
-      <section className="border-t border-ink/10 bg-white py-14">
+      // CTA Section
+      <section className="border-t border-gray-200 bg-white py-14">
         <div className="container flex flex-col items-center gap-6 px-4 text-center sm:flex-row sm:justify-between sm:text-left">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-ink text-white">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white">
               <FileText size={18} />
             </span>
             <div>
-              <p className="font-sans text-sm font-bold text-ink">
+              <p className="font-semibold text-gray-900">
                 Ready to index your knowledge base?
               </p>
-              <p className="font-body text-sm text-muted-foreground">
+              <p className="text-sm text-gray-600">
                 Upload your first document and start asking questions in
                 minutes.
               </p>
@@ -193,7 +199,7 @@ export default function Index() {
           </div>
           <Link
             to="/upload"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 font-body text-sm font-semibold text-white shadow-lg shadow-ink/10 transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-6 py-3 font-semibold text-white shadow-lg shadow-gray-900/20 transition-transform hover:-translate-y-0.5"
           >
             Upload documents
             <ArrowRight size={16} />
