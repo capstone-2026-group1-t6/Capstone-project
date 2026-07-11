@@ -61,11 +61,11 @@ export default function Index() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-40 -top-40 h-[420px] w-[420px] rounded-full bg-brand-blue/40 blur-[120px]"
+          className="pointer-events-none absolute -right-40 -top-40 h-[420px] w-[420px] rounded-full bg-blue-300/40 blur-[120px]"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-56 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-brand-pink/30 blur-[150px] sm:left-auto sm:right-1/4 sm:translate-x-0"
+          className="pointer-events-none absolute -bottom-56 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-pink-300/40 blur-[150px] sm:left-auto sm:right-1/4 sm:translate-x-0"
         />
 
         <div className="container relative flex flex-col items-center px-4 py-20 text-center sm:py-28">
@@ -107,6 +107,7 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Features Section */}
       <section className="border-t border-ink/10 bg-white py-16 sm:py-20">
         <div className="container px-4">
           <div className="mx-auto max-w-2xl text-center">
@@ -140,6 +141,7 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Steps Section */}
       <section className="border-t border-ink/10 bg-secondary/50 py-16 sm:py-20">
         <div className="container px-4">
           <div className="mx-auto max-w-2xl text-center">
@@ -180,7 +182,7 @@ export default function Index() {
       </section>
       
 
-      // CTA Section
+      {/* CTA Section */}
       <section className="border-t border-gray-200 bg-white py-14">
         <div className="container flex flex-col items-center gap-6 px-4 text-center sm:flex-row sm:justify-between sm:text-left">
           <div className="flex items-center gap-3">
