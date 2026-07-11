@@ -4,6 +4,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
 from app.core.observability import GENERATION_GROUNDING_FLAG, QUERY_END_TO_END_LATENCY, logger
+from app.services.corpus_index import DEFAULT_INDEX_PATH, DEFAULT_META_PATH, CorpusIndex
 from app.services.generate_service import GenerateService
 from app.services.graph_service import GraphService
 from app.services.hybrid_service import HybridService
@@ -12,11 +13,23 @@ from app.services.vector_service import VectorService
 
 router = APIRouter(prefix="/query", tags=["query"])
 
-# Wired up with no-op defaults for now; real indices/clients get injected
-# once Yusra's data pipeline and Hosam's baseline retrieval land.
+
+def _load_corpus_index() -> CorpusIndex | None:
+    """Loads the built FAISS index if present (see scripts/build_corpus_index.py).
+    Falls back to None -- vector/hybrid retrieval then returns no chunks
+    instead of failing, same as before the index existed.
+    """
+    if not DEFAULT_INDEX_PATH.exists() or not DEFAULT_META_PATH.exists():
+        logger.warning("No corpus index found at %s; retrieval will return no chunks.", DEFAULT_INDEX_PATH)
+        return None
+    return CorpusIndex.load()
+
+
+_corpus_index = _load_corpus_index()
+
 _router_service = RouterService()
-_vector_service = VectorService()
-_hybrid_service = HybridService()
+_vector_service = VectorService(corpus_index=_corpus_index)
+_hybrid_service = HybridService(corpus_index=_corpus_index)
 _graph_service = GraphService()
 _generate_service = GenerateService()
 
