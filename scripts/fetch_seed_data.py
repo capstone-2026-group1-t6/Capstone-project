@@ -85,7 +85,25 @@ def main() -> None:
             per_source_count[source_type] += 1
 
     out_path = SEED_DIR / "corpus.jsonl"
-    out_path.write_text("\n".join(json.dumps(row) for row in rows), encoding="utf-8")
+    
+    # Preserve any user-uploaded chunks (lines not from the seed dataset)
+    seed_source_types = {"confluence", "fireflies", "slack", "gmail", "linear",
+                         "google_drive", "hubspot", "github", "jira"}
+    preserved_uploads: list[str] = []
+    if out_path.exists():
+        for line in out_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                obj = json.loads(line)
+                if obj.get("source", "") not in seed_source_types:
+                    preserved_uploads.append(line)
+            except json.JSONDecodeError:
+                pass
+
+    seed_lines = "\n".join(json.dumps(row) for row in rows)
+    upload_lines = "\n" + "\n".join(preserved_uploads) if preserved_uploads else ""
+    out_path.write_text(seed_lines + upload_lines, encoding="utf-8")
 
     license_path = SEED_DIR / "LICENSE.txt"
     license_path.write_text(

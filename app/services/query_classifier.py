@@ -15,13 +15,13 @@ import re
 # Ordered by specificity: graph patterns checked first (most specific),
 # then hybrid (medium specificity), falling through to vector (default).
 _GRAPH_PATTERNS = [
-    r"\bwho (works?|reports?|collaborat\w*) (with|to|on)\b",
-    r"\brelationship(s)? between\b",
-    r"\bconnect(ed|ion)?\s+(to|between|with)\b",
+    r"\bwho (works?|reports?|collaborat\w*) (with|to|on)\b.*\b(project|team|department)\b",
+    r"\brelationship(s)? between\b.*\b(people|person|team|project)\b",
+    r"\bconnect(ed|ion)?\s+(to|between|with)\b.*\b(people|person|team|project)\b",
     r"\bwhich (team|teams|people|person)\s+(is|are)\s+(involved|responsible|assigned)\b",
-    r"\bowns?\b.*\bproject\b",
-    r"\breports? to\b",
-    r"\bwho (owns|leads|manages)\b",
+    r"\borganiz(ation|ational)\s+(chart|structure|hierarchy)\b",
+    r"\borg\s*chart\b",
+    r"\bwho (owns|leads|manages)\b.*\b(project|product|team)\b",
 ]
 
 _HYBRID_PATTERNS = [
