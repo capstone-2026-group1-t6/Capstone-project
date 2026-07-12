@@ -14,7 +14,7 @@ const features = [
     icon: UploadCloud,
     title: "Ingest any document",
     description:
-      "Drop PDFs, docs and any  notes. We chunk, embed and index them automatically for retrieval.",
+      "Drop PDFs, DOCX, TXT and more . We chunk, embed and index them automatically for retrieval.",
   },
   {
     icon: MessageSquareText,
@@ -191,7 +191,7 @@ export default function Index() {
             </span>
             <div>
               <p className="font-semibold text-gray-900">
-                Ready to index your knowledge base?
+                Ready to inde x your knowledge base?
               </p>
               <p className="text-sm text-gray-600">
                 Upload your first document and start asking questions in

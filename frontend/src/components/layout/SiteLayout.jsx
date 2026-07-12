@@ -6,7 +6,7 @@ const navItems = [
   { to: "/upload", label: "Upload Documents" },
   { to: "/chat", label: "Ask AI" },
 ]
-// className="bg-pink-50 border-pink-200 text-pink-600"
+// 
 export default function SiteLayout() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -15,7 +15,7 @@ export default function SiteLayout() {
         <div className="container flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-pink-300 text-white">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-pink-500 text-white">
               <Sparkles size={18} />
             </span>
             <span className="flex flex-col leading-none">
@@ -49,7 +49,7 @@ export default function SiteLayout() {
           </nav>
         </div>
       </header>
-        
+
       {/* Main Content */}
       <main className="flex flex-1 flex-col">
         <Outlet />
