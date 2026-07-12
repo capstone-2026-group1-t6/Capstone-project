@@ -30,6 +30,14 @@ class Settings(BaseSettings):
     llm_api_base: str = ""
     llm_api_key: str = ""
 
+    # GraphRAG (M9 stretch goal): Neo4j connection. Password empty by default
+    # -- query.py treats that as "no graph DB configured" and degrades to
+    # GraphService(graph_driver=None, nl_to_cypher=None) rather than failing.
+    graph_db_uri: str = "bolt://localhost:7687"
+    graph_db_user: str = "neo4j"
+    graph_db_password: str = ""
+    graph_db_database: str = "neo4j"
+
     model_config = SettingsConfigDict(env_file=".env", env_prefix="RAGPLATFORM_")
 
 
