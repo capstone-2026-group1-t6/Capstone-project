@@ -32,8 +32,12 @@ class GraphService:
             logger.exception("NL->Cypher translation failed for query=%r", query)
             return []
 
+        if cypher_query is None:
+            logger.info("NL->Cypher found no matching intent for query=%r", query)
+            return []
+
         try:
-            records = await self.graph_driver.run(cypher_query)
+            records = await self.graph_driver.run(cypher_query.text, cypher_query.parameters)
         except Exception:
             logger.exception("Graph query execution failed for query=%r", query)
             return []

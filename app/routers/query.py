@@ -3,11 +3,14 @@ import time
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
+from app.core.config import settings
 from app.core.observability import GENERATION_GROUNDING_FLAG, QUERY_END_TO_END_LATENCY, logger
 from app.services.corpus_index import DEFAULT_INDEX_PATH, DEFAULT_META_PATH, CorpusIndex
 from app.services.generate_service import GenerateService
+from app.services.graph_driver import Neo4jGraphDriver
 from app.services.graph_service import GraphService
 from app.services.hybrid_service import HybridService
+from app.services.nl_to_cypher import NLToCypher
 from app.services.router_service import RouterService, Strategy
 from app.services.vector_service import VectorService
 
@@ -25,13 +28,37 @@ def _load_corpus_index() -> CorpusIndex | None:
     return CorpusIndex.load()
 
 
+def _load_graph_driver() -> Neo4jGraphDriver | None:
+    """Connects to Neo4j if a graph DB is configured (password non-empty).
+    Falls back to None -- graph retrieval then returns no chunks instead of
+    failing, same degrade-gracefully pattern as _load_corpus_index above.
+    """
+    if not settings.graph_db_password:
+        logger.warning("No graph database configured; GraphRAG retrieval will return no chunks.")
+        return None
+    try:
+        return Neo4jGraphDriver()
+    except Exception:
+        logger.exception("Failed to connect to graph database; GraphRAG retrieval will return no chunks.")
+        return None
+
+
 _corpus_index = _load_corpus_index()
+_graph_driver = _load_graph_driver()
 
 _router_service = RouterService()
 _vector_service = VectorService(corpus_index=_corpus_index)
 _hybrid_service = HybridService(corpus_index=_corpus_index)
-_graph_service = GraphService()
+_graph_service = GraphService(
+    graph_driver=_graph_driver,
+    nl_to_cypher=NLToCypher() if _graph_driver is not None else None,
+)
 _generate_service = GenerateService()
+
+
+def shutdown_graph_driver() -> None:
+    if _graph_driver is not None:
+        _graph_driver.close()
 
 _STRATEGY_MAP = {
     Strategy.VECTOR: _vector_service,
