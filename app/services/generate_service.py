@@ -23,7 +23,7 @@ class GenerateService:
         self.llm_client = llm_client
 
     async def generate(
-        self, query: str, chunks: list[RetrievedChunk], strategy_used: str
+        self, query: str, messages: list[dict], chunks: list[RetrievedChunk], strategy_used: str
     ) -> GeneratedAnswer:
         if not chunks:
             return GeneratedAnswer(
@@ -42,7 +42,7 @@ class GenerateService:
             )
 
         context = "\n\n".join(f"[{c.chunk_id}] {c.text}" for c in chunks)
-        response_text = await self.llm_client.complete(query=query, context=context)
+        response_text = await self.llm_client.complete(query=query, messages=messages, context=context)
         return GeneratedAnswer(
             answer=response_text,
             citations=[c.chunk_id for c in chunks],

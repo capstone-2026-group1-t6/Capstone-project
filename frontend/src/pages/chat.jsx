@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { sendQuery } from "@/lib/api"
 
 const suggestions = [
   "What can I ask you to do?",
@@ -49,7 +50,7 @@ export default function Chat() {
     }
   }, [messages]);
 
-  const sendMessage = (text) => {
+  const sendMessage = async (text) => {
     const trimmed = text.trim()
     if (!trimmed) return
 
@@ -62,18 +63,31 @@ export default function Chat() {
     setInput("")
     setIsThinking(true)
 
-    setTimeout(() => {
-      setIsThinking(false)
+    try {
+      const history = messages.map(m => ({ role: m.role, content: m.content }))
+      const result = await sendQuery(trimmed, history)
       setMessages((prev) => [
         ...prev,
         {
           id: `${Date.now()}-assistant`,
           role: "assistant",
-          content:
-            "say meaow to get your answer",
+          content: result.answer,
+          sources: result.citations || [],
+          strategy: result.strategy_used,
         },
       ])
-    }, 1100)
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `${Date.now()}-assistant`,
+          role: "assistant",
+          content: "Sorry, I encountered an error.",
+        },
+      ])
+    } finally {
+      setIsThinking(false)
+    }
   }
 
   const handleSubmit = (e) => {

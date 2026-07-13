@@ -42,13 +42,24 @@ class GraphService:
             logger.exception("Graph query execution failed for query=%r", query)
             return []
 
-        return [
-            RetrievedChunk(
-                chunk_id=record["id"],
-                text=record["text"],
-                score=record.get("score", 1.0),
-                source=record.get("source", "graph"),
-                strategy="graph",
+        chunks: list[RetrievedChunk] = []
+        for record in records[:top_k]:
+            # Guard against malformed Neo4j records missing required fields.
+            # Cypher templates in nl_to_cypher.py always produce these columns,
+            # but a custom or future query might not — skip bad rows rather than
+            # crashing the entire retrieval call.
+            if "id" not in record or "text" not in record:
+                logger.warning(
+                    "Graph record missing required 'id' or 'text' field; skipping. record=%r", record
+                )
+                continue
+            chunks.append(
+                RetrievedChunk(
+                    chunk_id=record["id"],
+                    text=record["text"],
+                    score=record.get("score", 1.0),
+                    source=record.get("source", "graph"),
+                    strategy="graph",
+                )
             )
-            for record in records[:top_k]
-        ]
+        return chunks

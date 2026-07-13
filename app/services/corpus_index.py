@@ -91,6 +91,39 @@ class CorpusIndex:
         faiss.write_index(self._index, str(index_path))
         meta_path.write_text("\n".join(json.dumps(c) for c in self._metadata), encoding="utf-8")
 
+    def add_chunks(self, chunks: list[dict]) -> None:
+        if not chunks:
+            return
+        embeddings = self._model.encode(
+            [c["text"] for c in chunks],
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        ).astype("float32")
+        self._index.add(embeddings)
+        self._metadata.extend(chunks)
+
+    def delete_chunks_by_doc_id(self, doc_id: str) -> int:
+        initial_count = len(self._metadata)
+        self._metadata = [c for c in self._metadata if c.get("doc_id") != doc_id]
+        removed_count = initial_count - len(self._metadata)
+        
+        if removed_count > 0:
+            if not self._metadata:
+                self._index = faiss.IndexFlatIP(self._index.d)
+            else:
+                embeddings = self._model.encode(
+                    [c["text"] for c in self._metadata],
+                    convert_to_numpy=True,
+                    normalize_embeddings=True,
+                    show_progress_bar=False,
+                ).astype("float32")
+                new_index = faiss.IndexFlatIP(embeddings.shape[1])
+                new_index.add(embeddings)
+                self._index = new_index
+                
+        return removed_count
+
     async def search(self, query: str, top_k: int = 5) -> list[RetrievedChunk]:
         return await asyncio.to_thread(self._search_sync, query, top_k)
 
@@ -157,6 +190,14 @@ class KeywordIndex:
         if not meta_path.exists():
             meta_path.parent.mkdir(parents=True, exist_ok=True)
             meta_path.write_text("\n".join(json.dumps(c) for c in self._metadata), encoding="utf-8")
+
+    def rebuild(self) -> None:
+        """Rebuilds the BM25 index in-place from the current metadata."""
+        if not self._metadata:
+            self._bm25 = BM25Okapi([[]])
+            return
+        tokenized_corpus = [_tokenize(c["text"]) for c in self._metadata]
+        self._bm25 = BM25Okapi(tokenized_corpus)
 
     async def search(self, query: str, top_k: int = 5) -> list[RetrievedChunk]:
         return await asyncio.to_thread(self._search_sync, query, top_k)
