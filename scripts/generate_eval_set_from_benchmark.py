@@ -62,19 +62,21 @@ EVAL_SET_PATH = DATA_DIR / "eval_set.jsonl"
 # Verify these keys against the dataset's actual question_type strings
 # before trusting this mapping (see module docstring).
 QUESTION_TYPE_MAPPING = {
-    "Basic": ("lookup", "vector"),
-    "Semantic": ("lookup", "vector"),
-    "Intra-Document Reasoning": ("cross_document", "hybrid"),
-    "Constrained": ("cross_document", "hybrid"),
-    "Conflicting Info": ("cross_document", "hybrid"),
-    "Completeness": ("cross_document", "hybrid"),
-    "Miscellaneous": ("cross_document", "hybrid"),
-    "Project Related": ("entity_relationship", "graph"),
+    "basic": ("lookup", "vector"),
+    "semantic": ("lookup", "vector"),
+    "intra_document_reasoning": ("cross_document", "hybrid"),
+    "constrained": ("cross_document", "hybrid"),
+    "conflicting_info": ("cross_document", "hybrid"),
+    "completeness": ("cross_document", "hybrid"),
+    "miscellaneous": ("cross_document", "hybrid"),
+    "project_related": ("entity_relationship", "graph"),
 }
 
 # Excluded entirely -- no ground-truth documents per the dataset's own docs.
-EXCLUDED_QUESTION_TYPES = {"High Level", "Info Not Found"}
-
+EXCLUDED_QUESTION_TYPES = {
+    "high_level",
+    "info_not_found",
+}
 
 def load_local_doc_to_chunk_ids() -> dict[str, list[str]]:
     """Maps doc_id -> list of chunk_ids present in the LOCAL corpus subsample

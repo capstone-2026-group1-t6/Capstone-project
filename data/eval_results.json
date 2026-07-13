@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "num_examples": 208,
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "api_base_url": "http://localhost:8000"
+  },
+  "success_criteria": {
+    "criterion_1_grounding_precision": {
+      "mean": 0.0,
+      "std": 0.0,
+      "target": 0.75,
+      "pass": false
+    },
+    "criterion_2_latency_seconds": {
+      "mean": 1.5940741246666175,
+      "std": 0.43722240119984496,
+      "target": 5.0,
+      "pass": true
+    },
+    "criterion_3_router_accuracy": {
+      "mean": 0.28365384615384615,
+      "std": 0.0,
+      "target": 0.8,
+      "pass": false
+    }
+  },
+  "f1_vs_gold_answer": {
+    "mean": 0.05308779660300649,
+    "std": 0.009761200740769383
+  },
+  "baseline_vector_only_m8": {
+    "grounding_precision": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "f1": {
+      "mean": 0.04671746089856084,
+      "std": 0.0007521855906727791
+    },
+    "mean_latency": {
+      "mean": 0.15755076170824348,
+      "std": 0.02020580139191114
+    }
+  },
+  "by_strategy": {
+    "hybrid": {
+      "n": 208,
+      "grounding_precision": 0.0,
+      "f1": 0.04618558536668531,
+      "mean_latency": 1.2918925687352805
+    }
+  },
+  "by_query_pattern": {
+    "lookup": {
+      "n": 145,
+      "grounding_precision": 0.0,
+      "f1": 0.046287016354232144,
+      "mean_latency": 1.2795914013645258
+    },
+    "cross_document": {
+      "n": 59,
+      "grounding_precision": 0.0,
+      "f1": 0.045789977664797685,
+      "mean_latency": 1.327624042352693
+    },
+    "entity_relationship": {
+      "n": 4,
+      "grounding_precision": 0.0,
+      "f1": 0.048343925670954885,
+      "mean_latency": 1.210770650068298
+    }
+  }
+}
