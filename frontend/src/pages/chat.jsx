@@ -1,5 +1,19 @@
 import { useEffect, useRef, useState } from "react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 import { sendQuery } from "@/lib/api"
+
+/** Render assistant replies as Markdown (tables, bold, lists). User text stays plain. */
+function MessageBody({ role, content }) {
+  if (role === "user") {
+    return content
+  }
+  return (
+    <div className="chat-markdown">
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+    </div>
+  )
+}
 
 const suggestions = [
   "What can I ask you to do?",
@@ -149,7 +163,7 @@ export default function Chat() {
                       : "border border-gray-200 bg-white/80 text-gray-900 shadow-sm backdrop-blur"
                   }`}
                 >
-                  {message.content}
+                  <MessageBody role={message.role} content={message.content} />
                 </div>
               </div>
             ))}

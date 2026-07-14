@@ -13,7 +13,9 @@ class Settings(BaseSettings):
     environment: str = "local"
 
     # Router thresholds
-    router_confidence_threshold: float = 0.6  # below this -> fall back to hybrid (Risk 1 mitigation)
+    # Below this confidence, fall back to hybrid. Keep <= vector classifier
+    # confidence (0.65) so lookup/default queries can stay on vector.
+    router_confidence_threshold: float = 0.6
 
     # Retrieval
     default_top_k: int = 5
@@ -26,9 +28,14 @@ class Settings(BaseSettings):
     # Latency budget (Success Criterion 2)
     max_query_latency_seconds: float = 5.0
 
-    # External services (empty in local/dev; set in host env for deployed target)
+    # External LLM (OpenAI-compatible). Empty base → Groq default in LLMClient.
+    # Gemini free (recommended for full eval): set
+    #   llm_api_base=https://generativelanguage.googleapis.com/v1beta/openai/
+    #   llm_model=gemini-2.0-flash
+    #   llm_api_key=<AI Studio key>
     llm_api_base: str = ""
     llm_api_key: str = ""
+    llm_model: str = ""
 
     # GraphRAG (M9 stretch goal): Neo4j connection. Password empty by default
     # -- query.py treats that as "no graph DB configured" and degrades to
