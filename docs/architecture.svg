@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" role="img" aria-labelledby="title desc">
+  <title id="title">Multipurpose RAG System Architecture</title>
+  <desc id="desc">Frontend to FastAPI API routing queries to vector, hybrid, or graph retrieval, then LLM generation. Ingest updates FAISS, BM25, and Neo4j.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill: #f8fafc; stroke: #334155; stroke-width: 1.5; rx: 8; }
+      .box-ui { fill: #e0f2fe; stroke: #0369a1; }
+      .box-api { fill: #fef3c7; stroke: #b45309; }
+      .box-store { fill: #dcfce7; stroke: #15803d; }
+      .box-llm { fill: #f3e8ff; stroke: #7e22ce; }
+      .box-title { font: 700 14px system-ui, sans-serif; fill: #0f172a; }
+      .label { font: 12px system-ui, sans-serif; fill: #334155; }
+      .small { font: 11px system-ui, sans-serif; fill: #475569; }
+      .heading { font: 700 18px system-ui, sans-serif; fill: #0f172a; }
+      .sub { font: 12px system-ui, sans-serif; fill: #64748b; }
+    </style>
+  </defs>
+
+  <rect width="960" height="620" fill="#ffffff"/>
+  <text x="32" y="36" class="heading">Multipurpose RAG System — Architecture</text>
+  <text x="32" y="56" class="sub">Ingest → index stores · Query → router → retrieve → generate · Group1-Team6</text>
+
+  <!-- User -->
+  <rect x="40" y="100" width="100" height="48" class="box"/>
+  <text x="90" y="128" text-anchor="middle" class="box-title">User</text>
+
+  <!-- Frontend -->
+  <rect x="180" y="90" width="150" height="68" class="box box-ui"/>
+  <text x="255" y="118" text-anchor="middle" class="box-title">Frontend</text>
+  <text x="255" y="138" text-anchor="middle" class="small">React / Vite / Nginx :5173</text>
+
+  <!-- API -->
+  <rect x="400" y="80" width="180" height="88" class="box box-api"/>
+  <text x="490" y="110" text-anchor="middle" class="box-title">FastAPI API :8000</text>
+  <text x="490" y="130" text-anchor="middle" class="small">/ingest · /query · /health</text>
+  <text x="490" y="148" text-anchor="middle" class="small">Router + services</text>
+
+  <!-- arrows user-frontend-api -->
+  <line x1="140" y1="124" x2="178" y2="124" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="330" y1="124" x2="398" y2="124" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Router strategies -->
+  <text x="490" y="200" text-anchor="middle" class="label">Strategy router → confidence fallback to hybrid</text>
+
+  <rect x="280" y="220" width="120" height="56" class="box"/>
+  <text x="340" y="244" text-anchor="middle" class="box-title">Vector</text>
+  <text x="340" y="262" text-anchor="middle" class="small">FAISS cosine</text>
+
+  <rect x="430" y="220" width="120" height="56" class="box"/>
+  <text x="490" y="244" text-anchor="middle" class="box-title">Hybrid</text>
+  <text x="490" y="262" text-anchor="middle" class="small">Vec + BM25 + rerank</text>
+
+  <rect x="580" y="220" width="120" height="56" class="box"/>
+  <text x="640" y="244" text-anchor="middle" class="box-title">Graph</text>
+  <text x="640" y="262" text-anchor="middle" class="small">NL→Cypher</text>
+
+  <line x1="490" y1="168" x2="340" y2="218" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="490" y1="168" x2="490" y2="218" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="490" y1="168" x2="640" y2="218" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Stores -->
+  <rect x="240" y="320" width="140" height="64" class="box box-store"/>
+  <text x="310" y="348" text-anchor="middle" class="box-title">FAISS</text>
+  <text x="310" y="366" text-anchor="middle" class="small">all-MiniLM-L6-v2</text>
+
+  <rect x="410" y="320" width="140" height="64" class="box box-store"/>
+  <text x="480" y="348" text-anchor="middle" class="box-title">BM25</text>
+  <text x="480" y="366" text-anchor="middle" class="small">+ cross-encoder</text>
+
+  <rect x="580" y="320" width="140" height="64" class="box box-store"/>
+  <text x="650" y="348" text-anchor="middle" class="box-title">Neo4j :7687</text>
+  <text x="650" y="366" text-anchor="middle" class="small">People / Projects</text>
+
+  <line x1="340" y1="276" x2="310" y2="318" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="490" y1="276" x2="450" y2="318" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="490" y1="276" x2="510" y2="318" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="640" y1="276" x2="650" y2="318" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Generate -->
+  <rect x="400" y="420" width="180" height="56" class="box box-llm"/>
+  <text x="490" y="444" text-anchor="middle" class="box-title">GenerateService</text>
+  <text x="490" y="462" text-anchor="middle" class="small">Grounded answer + citations</text>
+
+  <line x1="310" y1="384" x2="440" y2="430" stroke="#334155" stroke-width="1.1" marker-end="url(#arrow)"/>
+  <line x1="480" y1="384" x2="490" y2="418" stroke="#334155" stroke-width="1.1" marker-end="url(#arrow)"/>
+  <line x1="650" y1="384" x2="540" y2="430" stroke="#334155" stroke-width="1.1" marker-end="url(#arrow)"/>
+
+  <rect x="640" y="420" width="160" height="56" class="box box-llm"/>
+  <text x="720" y="444" text-anchor="middle" class="box-title">External LLM</text>
+  <text x="720" y="462" text-anchor="middle" class="small">Cerebras / Groq / Gemini</text>
+  <line x1="580" y1="448" x2="638" y2="448" stroke="#334155" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Ingest lane -->
+  <rect x="40" y="500" width="880" height="90" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" rx="8"/>
+  <text x="56" y="528" class="box-title">Ingest path</text>
+  <text x="56" y="552" class="label">PDF / DOCX / CSV / TXT · HuggingFace URL · Web URL</text>
+  <text x="56" y="572" class="small">chunk → corpus.jsonl → embed (FAISS) → rebuild BM25 → optional LLM entity extract → Neo4j</text>
+
+  <!-- Prometheus -->
+  <rect x="760" y="90" width="140" height="68" class="box"/>
+  <text x="830" y="118" text-anchor="middle" class="box-title">Prometheus</text>
+  <text x="830" y="138" text-anchor="middle" class="small">:9090 metrics</text>
+  <line x1="760" y1="124" x2="582" y2="124" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+</svg>

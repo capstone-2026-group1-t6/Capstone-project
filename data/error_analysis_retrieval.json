@@ -1,0 +1,1345 @@
+{
+  "method": "Offline FAISS top-5 retrieval diagnostic on eval questions with joinable free-text gold chunks (vector+hybrid expected). error=1 if no gold chunk_id appears in top-5. Length bucket = total gold evidence characters / chunk count. Source type = majority source field of gold chunks.",
+  "k": 5,
+  "n_text_eval": 100,
+  "overall_retrieval_error": 0.35,
+  "by_source": {
+    "confluence": {
+      "error_rate": 0.23076923076923078,
+      "mean_top5_prec": 0.36923076923076925,
+      "n": 39
+    },
+    "fireflies": {
+      "error_rate": 0.6153846153846154,
+      "mean_top5_prec": 0.12307692307692308,
+      "n": 13
+    },
+    "github": {
+      "error_rate": 0.4,
+      "mean_top5_prec": 0.21333333333333335,
+      "n": 15
+    },
+    "gmail": {
+      "error_rate": 0.47619047619047616,
+      "mean_top5_prec": 0.19047619047619047,
+      "n": 21
+    },
+    "google_drive": {
+      "error_rate": 0.16666666666666666,
+      "mean_top5_prec": 0.3,
+      "n": 12
+    }
+  },
+  "by_length": {
+    "long (>4.5k / 5+ chunks)": {
+      "error_rate": 0.25,
+      "n": 24
+    },
+    "medium (2.5\u20134.5k / 3\u20134 chunks)": {
+      "error_rate": 0.4027777777777778,
+      "n": 72
+    },
+    "short (<2.5k / \u22642 chunks)": {
+      "error_rate": 0.0,
+      "n": 4
+    }
+  },
+  "by_pattern": {
+    "cross_document": {
+      "error_rate": 0.26,
+      "n": 50
+    },
+    "lookup": {
+      "error_rate": 0.44,
+      "n": 50
+    }
+  },
+  "heatmap_error_rate": {
+    "long (>4.5k / 5+ chunks)": {
+      "confluence": 0.211,
+      "fireflies": 1.0,
+      "github": 0.0,
+      "gmail": 0.0,
+      "google_drive": 0.0
+    },
+    "medium (2.5\u20134.5k / 3\u20134 chunks)": {
+      "confluence": 0.294,
+      "fireflies": 0.545,
+      "github": 0.462,
+      "gmail": 0.5,
+      "google_drive": 0.182
+    },
+    "short (<2.5k / \u22642 chunks)": {
+      "confluence": 0.0,
+      "fireflies": null,
+      "github": 0.0,
+      "gmail": null,
+      "google_drive": null
+    }
+  },
+  "heatmap_n": {
+    "long (>4.5k / 5+ chunks)": {
+      "confluence": 19,
+      "fireflies": 2,
+      "github": 1,
+      "gmail": 1,
+      "google_drive": 1
+    },
+    "medium (2.5\u20134.5k / 3\u20134 chunks)": {
+      "confluence": 17,
+      "fireflies": 11,
+      "github": 13,
+      "gmail": 20,
+      "google_drive": 11
+    },
+    "short (<2.5k / \u22642 chunks)": {
+      "confluence": 3,
+      "fireflies": 0,
+      "github": 1,
+      "gmail": 0,
+      "google_drive": 0
+    }
+  },
+  "graph_slice_from_eval_results": {
+    "n_graph_eval": 46,
+    "entity_relationship_grounding": 0.75,
+    "entity_relationship_f1": 0.79,
+    "graph_strategy_grounding": 0.86,
+    "graph_strategy_f1": 0.88,
+    "graph_strategy_latency": 3.92,
+    "implied_error_proxy_1_minus_grounding": 0.14
+  },
+  "misses": [
+    {
+      "question_id": "qst_0288",
+      "question": "In the late Q3 email thread about rescuing a near-lost senior platform hire for a customer-facing performance pipeline, what one-time pay-range exception did People Ops approve (how far above the midpoint)?",
+      "expected_answer": "People Ops approved a one-time, documented band uplift for INF-324 of up to 10% above the midpoint.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_c2ddd5240eb04e16806d82103f7646dd-0000",
+        "dsid_c2ddd5240eb04e16806d82103f7646dd-0002",
+        "dsid_c2ddd5240eb04e16806d82103f7646dd-0001"
+      ],
+      "hit_sample": [
+        "dsid_614b42d654ba42e1abaa5163da75bc13-0003",
+        "dsid_bf2d0c7657304590ba9e5b87b1e2dd25-0003",
+        "dsid_45f8f40eda68403ca56ae8d1cf9e3d94-0001",
+        "dsid_267c543125f648668ce42b56dc7396a8-0001",
+        "dsid_267c543125f648668ce42b56dc7396a8-0000"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0027",
+      "question": "In the Redwood and Acme service assurance negotiation, what timing did Redwood agree to for sending an initial incident summary after a Severity 1 outage?",
+      "expected_answer": "Redwood agreed to provide an initial incident summary within 4 hours for Severity 1 incidents.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_214ba4ea822e4d328287194a5e27e632-0002",
+        "dsid_214ba4ea822e4d328287194a5e27e632-0003",
+        "dsid_214ba4ea822e4d328287194a5e27e632-0000"
+      ],
+      "hit_sample": [
+        "dsid_ca42a8f18d784c879c5a6fcfe3a484c0-0000",
+        "dsid_e5fe3fd0cf444668a64970ec00818f46-0002",
+        "dsid_8ace54698e10431784f7a67e1c116c8f-0002",
+        "dsid_8ace54698e10431784f7a67e1c116c8f-0003",
+        "dsid_d11b935761d94f10911c358aba04f4df-0002"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0180",
+      "question": "In our rollout system, what is the name of the new mechanism that prevents a candidate release from getting full user traffic until a dry run with replayed requests and smoke checks has passed?",
+      "expected_answer": "It's the **TrafficEscrow** (the **traffic_escrow** service), which escrows routing/commit promotion and only releases it after a rehearse run with replayed requests and smoke checks succeeds.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_730ed8ee5fc84e0b9be761003b9a60d3-0002",
+        "dsid_730ed8ee5fc84e0b9be761003b9a60d3-0003",
+        "dsid_730ed8ee5fc84e0b9be761003b9a60d3-0001"
+      ],
+      "hit_sample": [
+        "dsid_e54255e3a03a4fae9f0162c77ca622e9-0003",
+        "dsid_91d7f359508c4476a6f717ea2b33aecc-0001",
+        "dsid_e41f25b656034d84a2071619c87fb680-0002",
+        "dsid_0e0ac7276c864c63a02586fa07ae85e1-0002",
+        "dsid_6a8476f19fee43b3af984d2bd790453f-0000"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0234",
+      "question": "During the rollout of the new version of our inference cost optimizer, what is the suggested traffic ramp schedule for moving from a small canary to full production, including the minimum stabilization wait between increases?",
+      "expected_answer": "The recommended ramp is to increase traffic in doubling increments from canary to full production: 10% \u2192 20% \u2192 40% \u2192 80% \u2192 100%, waiting for telemetry to stabilize after each step for at least 24 hour",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "confluence",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_ad58457891774bd7ba480e0bcd13df3a-0003",
+        "dsid_ad58457891774bd7ba480e0bcd13df3a-0002",
+        "dsid_ad58457891774bd7ba480e0bcd13df3a-0000"
+      ],
+      "hit_sample": [
+        "dsid_2e3c02ba05684304a74b2e2844559d55-0000",
+        "dsid_45f8f40eda68403ca56ae8d1cf9e3d94-0003",
+        "dsid_2e3c02ba05684304a74b2e2844559d55-0003",
+        "dsid_6eba3fef25744a14a2890262d3b880d7-0001",
+        "dsid_e229fef1aaab40a2a5aae5c10afa0183-0002"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0276",
+      "question": "In our model serving stack, what change was proposed to reduce cost swings when traffic mixes tiny chat style requests with much longer generations, by dynamically choosing between a few preset group sizes under latency budgets instead of waiting for one fixed threshold?",
+      "expected_answer": "The PR proposed adding a conservative \"stepped\" batching policy to the serving scheduler, where you configure an ordered list of batch sizes (e.g., 1, 4, 16) with per-step max-latency budgets, and the",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_ee6c23c178dc428bbd71af6526c70251-0003",
+        "dsid_ee6c23c178dc428bbd71af6526c70251-0001",
+        "dsid_ee6c23c178dc428bbd71af6526c70251-0000"
+      ],
+      "hit_sample": [
+        "dsid_dcd2e8a2fe6c453da65dd8546f676f63-0003",
+        "dsid_d3a49c0b97814fa48128e3e63e32209c-0002",
+        "dsid_14e4970174834feab014d1ceb53c5987-0000",
+        "dsid_c37fc285f07b4ef8b80e3886ec3fe25d-0000",
+        "dsid_214144f9a49644409f4cd3ecd8fa1027-0000"
+      ],
+      "evidence_chars": 3994,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0247",
+      "question": "In the partner sales planning call between a vendor and an ISV, what were the concrete due dates in late December for each side to send the pilot inputs and the vendor deliverables?",
+      "expected_answer": "Orbital (the ISV) committed to send the pilot inputs-target account list, topology, and sample prompts-by 12/22. Redwood (the vendor) committed to send the co-sell one-pager and pricing spreadsheet by",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "fireflies",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_cc2f84330d014d03b8c49f8e92063b07-0000",
+        "dsid_cc2f84330d014d03b8c49f8e92063b07-0002",
+        "dsid_cc2f84330d014d03b8c49f8e92063b07-0003"
+      ],
+      "hit_sample": [
+        "dsid_588bfab3ba40487fbdb5f113679a9243-0003",
+        "dsid_795135f656eb4d98a982583d71c90f6b-0002",
+        "dsid_ee5f7ef213ca48f69dda06974a742720-0001",
+        "dsid_590dd1330a4046e28ac0a2f43b7910cc-0001",
+        "dsid_a4ab40c6ecf249239d4b426892299048-0002"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0294",
+      "question": "In the internal workshop where we deliberately sabotage a client library via a local proxy to test resiliency, what exact fields are required in the saved run trace file format (the per-span identifiers, timestamps, and the single flattened attributes string) so our baseline and failure runs are comparable?",
+      "expected_answer": "The lab's golden trace must be a JSON file with a top-level array of spans, and each span must include these string fields: trace_id, span_id, parent_id (nullable; use an empty string if none), name, ",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "confluence",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_77351104a57140ac8e065d0a6bcf2046-0002",
+        "dsid_77351104a57140ac8e065d0a6bcf2046-0001",
+        "dsid_77351104a57140ac8e065d0a6bcf2046-0000"
+      ],
+      "hit_sample": [
+        "dsid_3b132442b47b45aaa7fbe3e87bab0040-0000",
+        "dsid_3b132442b47b45aaa7fbe3e87bab0040-0002",
+        "dsid_f804f989594f47cbaa3ea3039fc42717-0001",
+        "dsid_b31e1f71c7fb48f48ab374a2bf4addaf-0000",
+        "dsid_e9c08f265db9435f89c3f6109f94aa38-0000"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0184",
+      "question": "When is the 60 to 90 minute technical deep dive scheduled with the healthcare client about running model serving inside their own isolated network, and what is the time window in Pacific time?",
+      "expected_answer": "The 60-90 minute technical deep dive (private hosting architecture review) is scheduled for Tuesday, October 24, 2028, from 10:00 to 11:15 AM Pacific Time.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_74cd6ebda84547e2a534f8f6d1b49739-0000",
+        "dsid_74cd6ebda84547e2a534f8f6d1b49739-0001",
+        "dsid_74cd6ebda84547e2a534f8f6d1b49739-0002"
+      ],
+      "hit_sample": [
+        "dsid_b7ede3e2949f492bb472e3255b18a847-0000",
+        "dsid_d2d3659535cb43e49a7c64dd4acc17ed-0001",
+        "dsid_968d71f5cbb84602bcd357bc9e002922-0002",
+        "dsid_494f7595ac26494c98a6d3ec81b0381b-0001",
+        "dsid_3c3ab5813b264367877e0d02f652ca32-0000"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0121",
+      "question": "When is the 48-hour throughput and latency benchmark on the dedicated pool due to be completed?",
+      "expected_answer": "The 48-hour throughput and latency benchmark on the dedicated pool is due by 2026-12-08 (with results/readout shared by that date).",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "fireflies",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_e3ae91c7f83f46e492209ffec2c7f2b8-0003",
+        "dsid_e3ae91c7f83f46e492209ffec2c7f2b8-0001",
+        "dsid_e3ae91c7f83f46e492209ffec2c7f2b8-0002"
+      ],
+      "hit_sample": [
+        "dsid_494f7595ac26494c98a6d3ec81b0381b-0002",
+        "dsid_74647e6c70964f2e8419764d1d3d9d4e-0002",
+        "dsid_73860aa6713e4ba9b83d5b8ac6c8f3ea-0002",
+        "dsid_afc15f9017b14425bf046949718d58a1-0002",
+        "dsid_b7ede3e2949f492bb472e3255b18a847-0000"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0174",
+      "question": "What are the required fields that each entry in the contract conformance results ledger must include?",
+      "expected_answer": "Each contract conformance results ledger entry must include: timestamp, service_a, service_a_version, service_b, service_b_version, endpoint, dcts_version, test_case_id, result (pass|fail), failure_re",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "confluence",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_04b24bf957c047f4b7d8ceefdfde8290-0000",
+        "dsid_04b24bf957c047f4b7d8ceefdfde8290-0003",
+        "dsid_04b24bf957c047f4b7d8ceefdfde8290-0002"
+      ],
+      "hit_sample": [
+        "dsid_0a2cd37d53ff47d4aced289cd9a76fe8-0001",
+        "dsid_f2f019c122154edc8b21f56879661043-0003",
+        "dsid_966bc021e3d446c6b2d0468ad7128e15-0002",
+        "dsid_8443a06dd6d1445aa6f370bf1f289bee-0001",
+        "dsid_aca86b63a0774257b0d35c8ea8470d15-0001"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0257",
+      "question": "For the healthcare chat rollout that ramps from a few thousand to about fifteen thousand monthly active users by month three, what was the projected total monthly language model token consumption at steady state based on the stated session and prompt/response length assumptions?",
+      "expected_answer": "At Month 3 steady state (~15k MAU), the projection was about 486 million total tokens per month (prompt + completion), based on ~1.8 million requests/month and the stated session and prompt/response l",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_c563b97cd7314d1396553dfd8034e819-0001",
+        "dsid_c563b97cd7314d1396553dfd8034e819-0000",
+        "dsid_c563b97cd7314d1396553dfd8034e819-0003"
+      ],
+      "hit_sample": [
+        "dsid_79a3ce4e01d644cfb43784c54d219695-0000",
+        "dsid_329c087592b249cb9a6bcc5f9794d26b-0002",
+        "dsid_06da57fd569646bb92b3d2db1684aa23-0002",
+        "dsid_42f3845d2dec490abcac28b1cdea1b1c-0002",
+        "dsid_c52c609c0cdf4211a7e8c57bb1da72e4-0001"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0178",
+      "question": "In the recent change that made low bit math safer for inference, what is the default pass rate used to decide when a machine is allowed to step down from the safest numeric mode?",
+      "expected_answer": "The default pass-rate threshold is 0.92 (i.e., 92% of the microbenchmark runs must pass) before a node is allowed to step down from the safest precision.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_22a7e9af2760474dbdf611c2c21cd231-0000",
+        "dsid_22a7e9af2760474dbdf611c2c21cd231-0002",
+        "dsid_22a7e9af2760474dbdf611c2c21cd231-0001"
+      ],
+      "hit_sample": [
+        "dsid_aa532b5a3c634229b9a068654b945c6c-0002",
+        "dsid_f6dc235e720f40ad91f0398d7626a2b7-0000",
+        "dsid_c89bd8ceac1b453f8634e570b4c019d5-0003",
+        "dsid_6ff09cf76a40402f933dae499a528307-0001",
+        "dsid_e6813bca5a82492c9d6f19d11f68727b-0003"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0261",
+      "question": "In our model serving runtime, what is the new approach that chooses between two attention implementations at execution time to cut tail latency on mixed prompt lengths and avoid costly cache page swapping on very long contexts?",
+      "expected_answer": "It's the neon-orchestrated hybrid attention path: a runtime kernel tiler that dynamically chooses between a lightweight FlashAttention-style fast path for dense short sequences and a neon-prefetch til",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_fa1c733deb77445da7bc55dc472d233d-0002",
+        "dsid_fa1c733deb77445da7bc55dc472d233d-0003",
+        "dsid_fa1c733deb77445da7bc55dc472d233d-0001"
+      ],
+      "hit_sample": [
+        "dsid_3c8b400c966e4e84b87095f87c24a4e2-0003",
+        "dsid_fa79643c4fe4430395363b868d306267-0000",
+        "dsid_f7aea6b428504471bb05e16aaba6709b-0000",
+        "dsid_5e9a658e71b044448245b7dc55f9e91f-0003",
+        "dsid_c4c242391be94a5ca8f151d75c5a8a1a-0001"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0210",
+      "question": "What is the numeric rule that turns recent automated test slice failure patterns plus latency and vector drift into a single 0 to 100 release risk score that decides whether to proceed, slow down, pause, or revert a staged model change?",
+      "expected_answer": "The protocol computes a Decision Score (DS) on a 0-100 scale as DS = clamp(SS + LP + DF, 0, 100), where SS = 100 * (\u2211p w_p * (failure_count_p / max(1,total_calls_p)) / \u2211p w_p), LP = 10 * max(0, (media",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "confluence",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_b4bd83b46612452e858bc02b380082e2-0000",
+        "dsid_b4bd83b46612452e858bc02b380082e2-0002",
+        "dsid_b4bd83b46612452e858bc02b380082e2-0003"
+      ],
+      "hit_sample": [
+        "dsid_79e16d91c8a14f0595ffcd00d9019f4c-0003",
+        "dsid_7825925d2c904002b34959d93a6f31df-0002",
+        "dsid_a54a2f8553804d34986f42a49907b9d0-0002",
+        "dsid_340ac330156640ebae74b7f5f73f051b-0003",
+        "dsid_1367534a7255489a956a1ecf690973b9-0000"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0255",
+      "question": "When is the 45 minute video call finally locked in for the vendor walkthrough that got moved because the client team was traveling to a Denver conference in early October 2026?",
+      "expected_answer": "The 45-minute vendor walkthrough video call is locked in for Tuesday, Oct 12, 2026, from 11:00-11:45 AM ET (8:00-8:45 AM PT) via Google Meet.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_97750eeb49894690aa3d425669af4de0-0000",
+        "dsid_97750eeb49894690aa3d425669af4de0-0001",
+        "dsid_97750eeb49894690aa3d425669af4de0-0003"
+      ],
+      "hit_sample": [
+        "dsid_045c297ec2ef495abd66cb1f09921fc4-0000",
+        "dsid_eaba98d337364b29ab4f61330db3b000-0000",
+        "dsid_2197e7a75bcb4519acb98d605b47b060-0001",
+        "dsid_a89e842138d4471ea632c42f5d8c33b4-0002",
+        "dsid_8935178ab5b9485a9b7fc0f048bf0067-0003"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0280",
+      "question": "In the rollout plan for the internal service that only hands out application secrets to verified runtime hosts using short lived machine health proofs and hardware backed key unwrapping, what is the default hot and cold retention period for the tamper resistant audit trail?",
+      "expected_answer": "The tamper-evident audit trail defaults to 90 days of hot retention and 1 year of cold retention.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "google_drive",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_6713194be8d54a0f8de8f8d89347ecf6-0003",
+        "dsid_6713194be8d54a0f8de8f8d89347ecf6-0000",
+        "dsid_6713194be8d54a0f8de8f8d89347ecf6-0001"
+      ],
+      "hit_sample": [
+        "dsid_98d7acbda29a4260a413c8d6da7207a3-0003",
+        "dsid_bd7a069f489b4a589c6b2967b55f0cc1-0000",
+        "dsid_5f0ab47fe8de47a89bb6668f8722becf-0000",
+        "dsid_371725506963410fbdfee3053def17a3-0003",
+        "dsid_ca11386edd264e5c841365093fedf640-0002"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0260",
+      "question": "From a late July 2025 call with a vendor, what was the specific console tuning recommendation for the search route that included both a suggested batch size and a quantization setting?",
+      "expected_answer": "In the console's Optimize suggestions panel for the search route, Redwood recommended using a batch size of 8 along with a quantization profile of x4.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "fireflies",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_9bf09a549d22494c9672ecdd79896878-0002",
+        "dsid_9bf09a549d22494c9672ecdd79896878-0000",
+        "dsid_9bf09a549d22494c9672ecdd79896878-0001"
+      ],
+      "hit_sample": [
+        "dsid_b4b0b9113c4e4c73aa0a420178f4e8cb-0001",
+        "dsid_9ad34d10c60a4c88931642a247aeb063-0001",
+        "dsid_9ad34d10c60a4c88931642a247aeb063-0000",
+        "dsid_5d1f41789af246dba90447dcff112b3a-0003",
+        "dsid_543da8f3e7ab41f1b5e249d8f490e313-0003"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0177",
+      "question": "What were the final concession terms approved for the retail partner purchase through the major cloud providers marketplace, specifically the first year price reduction and the referral payout schedule after launch?",
+      "expected_answer": "The final approved concession was a 30% discount off list price for the first 12 months. The referral/partner payout was set at 15% rev-share for the first two quarters after go-live, stepping down to",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_7d925287f5224f72b641acbd515beb2a-0002",
+        "dsid_7d925287f5224f72b641acbd515beb2a-0003",
+        "dsid_7d925287f5224f72b641acbd515beb2a-0001"
+      ],
+      "hit_sample": [
+        "dsid_350bd174722b429bb03eebcb2b7eb0cc-0000",
+        "dsid_dbd29f9393f149fbb696c9a5614dc875-0000",
+        "dsid_6c4c1c875e704f09b4d791d64d7bc7e5-0003",
+        "dsid_2312503272654f06ab5b98d9f778f73d-0001",
+        "dsid_8f0b7a8c1dbb4df0b23f6c4e61c9f1a6-0001"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0140",
+      "question": "What is the minimum cache time-to-live safeguard that was added to the new automated policy recommendation service to prevent cold-start issues after deploys?",
+      "expected_answer": "A minimum cache TTL safeguard of 100ms (safety_floor_min_ttl=100ms) was added to help avoid cold-start storms after deploys.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_aa532b5a3c634229b9a068654b945c6c-0000",
+        "dsid_aa532b5a3c634229b9a068654b945c6c-0001",
+        "dsid_aa532b5a3c634229b9a068654b945c6c-0003"
+      ],
+      "hit_sample": [
+        "dsid_128de43d0f714efea626f2f0749a950d-0003",
+        "dsid_3975d7071de044e6bfbe0011cda8f226-0002",
+        "dsid_220c9f74803846d2850d7b713fa0b4f6-0000",
+        "dsid_2e4183d040b341cf843366e2c15402af-0002",
+        "dsid_9f2e6aa7f6c14b1db1c6f922a1d4b4d7-0000"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0133",
+      "question": "What are the pass fail criteria used in the quick pull request smoke checks for the embedding robustness noise and input length evaluation suite?",
+      "expected_answer": "For the quick PR smoke checks, the suite flags failure if any of these exceed the thresholds: median cosine nearest-neighbor distance deviates by more than \u00b16% from baseline, NDCG@10 on curated-qrels-",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "google_drive",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_ae7131f5d64f4f37af677f702dc60d2b-0003",
+        "dsid_ae7131f5d64f4f37af677f702dc60d2b-0002",
+        "dsid_ae7131f5d64f4f37af677f702dc60d2b-0000"
+      ],
+      "hit_sample": [
+        "dsid_fb1c077f8a20415d952a06a9e4f2a758-0003",
+        "dsid_873d3cc9bb0d42839b6f5d83535eafc0-0002",
+        "dsid_9aa114efb2d448afb553722b5bf5e4eb-0000",
+        "dsid_274a2d5ef7e44dfc8378a0215d424aef-0001",
+        "dsid_1367534a7255489a956a1ecf690973b9-0000"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0074",
+      "question": "How does the new v1 chat compatibility layer handle invalid tool or function schemas, and what HTTP status does it return when validation fails?",
+      "expected_answer": "The compatibility layer validates forced tool/function calls against the registered schemas and fails closed if the schema is invalid. On validation failure, it returns an HTTP 422 with a structured e",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_8779ac72d6504759b701178632772f6c-0002",
+        "dsid_8779ac72d6504759b701178632772f6c-0001",
+        "dsid_8779ac72d6504759b701178632772f6c-0000"
+      ],
+      "hit_sample": [
+        "dsid_ae455bffe226412c9973991ef2d34a72-0003",
+        "dsid_22eaf80eaf574c788b6e45e9dc2eb00d-0000",
+        "dsid_604765ab01344c43bdb5548af791aff9-0000",
+        "dsid_3ea7c0ad13fc498580850ad46ae8ccab-0001",
+        "dsid_faf3246a6ce845e6b5df0ae52f439399-0000"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0041",
+      "question": "In the security review call about buying an LLM inference service through AWS Marketplace, what was said about whether cross-region failover is enabled by default for the hosted endpoint?",
+      "expected_answer": "They said cross-region failover (cross-region fallback) is not enabled by default for the hosted regional endpoint-requests are processed in the selected region unless the customer explicitly turns on",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "fireflies",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_862bb899faac43feab4f92a12d320e7c-0003",
+        "dsid_862bb899faac43feab4f92a12d320e7c-0002",
+        "dsid_862bb899faac43feab4f92a12d320e7c-0000"
+      ],
+      "hit_sample": [
+        "dsid_33de625fcfc045dd967dbc9bdde3a8b4-0001",
+        "dsid_bd804e2fa79f40e2afd262d27ea326c5-0001",
+        "dsid_d844cc30147b49c69ea5275b4993b571-0002",
+        "dsid_960a2981de674ebf844f7dc19d2e3cc0-0002",
+        "dsid_33de625fcfc045dd967dbc9bdde3a8b4-0000"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0430",
+      "question": "Does the Hosted AWS Marketplace SKU support customer-managed KMS keys (BYOK)?",
+      "expected_answer": "Updated (2026 FAQ): Hosted uses provider-managed KMS keys by default, but customer-managed KMS (BYOK) is available for enterprise tenants in select regions as an add-on (subject to feasibility); if it",
+      "len_bucket": "long (>4.5k / 5+ chunks)",
+      "source": "fireflies",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "conflicting_info",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_3c9fe2220c204f13b878bd7d3a168f91-0000",
+        "dsid_3c9fe2220c204f13b878bd7d3a168f91-0003",
+        "dsid_3c9fe2220c204f13b878bd7d3a168f91-0001"
+      ],
+      "hit_sample": [
+        "dsid_1019663e9ca14f7695b3dd81a2b274d4-0003",
+        "dsid_05932c97cec94a0ca09ab7bdb40d27d2-0002",
+        "dsid_5fd7043aba284453aaadd3341b9ac098-0002",
+        "dsid_ed54123485b148c29b3a04c8ed02ba67-0002",
+        "dsid_a34a9c165156416a9911b562a6fcfa3d-0003"
+      ],
+      "evidence_chars": 7999,
+      "n_docs": 2
+    },
+    {
+      "question_id": "qst_0439",
+      "question": "How many internal incident writeups at Redwood Inference describe activating automatic fallback (to a different model or region) as part of mitigation?",
+      "expected_answer": "4 internal incident writeups describe activating automatic fallback as part of mitigation (2025-02-11, 2025-03-03, 2025-06-08, and 2025-07-22).",
+      "len_bucket": "long (>4.5k / 5+ chunks)",
+      "source": "confluence",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "completeness",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_d3edd63b9ec54523ad12bd9be3d7e996-0001",
+        "dsid_4e016427a93c49ffadd31fcdc1dca792-0000",
+        "dsid_a277ed2dc74c4bad82bc71b534b6356f-0001"
+      ],
+      "hit_sample": [
+        "dsid_ca42a8f18d784c879c5a6fcfe3a484c0-0000",
+        "dsid_d1a2239aa5c4467db0f0a09d6ac2440f-0000",
+        "dsid_85ade33e53334639be778b9c7aabe637-0000",
+        "dsid_d1a2239aa5c4467db0f0a09d6ac2440f-0003",
+        "dsid_220c9f74803846d2850d7b713fa0b4f6-0003"
+      ],
+      "evidence_chars": 10376,
+      "n_docs": 5
+    },
+    {
+      "question_id": "qst_0336",
+      "question": "For the CartPilot Redwood trial POC, when is the kickoff sync scheduled and what peak request rate did they say they expect during bursts?",
+      "expected_answer": "The kickoff sync is scheduled for Wednesday 7/31 at 10:00 AM PT, and they expect peak bursts of up to about 120 requests per second.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "intra_document_reasoning",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_b89d7b362a2c480993502fb443c144c9-0003",
+        "dsid_b89d7b362a2c480993502fb443c144c9-0000",
+        "dsid_b89d7b362a2c480993502fb443c144c9-0002"
+      ],
+      "hit_sample": [
+        "dsid_18e422c49e3a43059946d67cf4f1fe8d-0000",
+        "dsid_968d71f5cbb84602bcd357bc9e002922-0002",
+        "dsid_a53ff5cba79043439e8f8b96c58ae946-0000",
+        "dsid_3b2913314712470caac4272dec02ee1b-0000",
+        "dsid_a53ff5cba79043439e8f8b96c58ae946-0001"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0314",
+      "question": "For the Jupiter Therapeutics rollout, if the target go-live is 2028-07-22 and the canary is planned as 7 days with a 10/90 traffic split, what date should the canary period start?",
+      "expected_answer": "The canary period should start on 2028-07-15, which is 7 days before the 2028-07-22 go-live date.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "intra_document_reasoning",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_675719b813ed4030b65514ca79e67ef8-0003",
+        "dsid_675719b813ed4030b65514ca79e67ef8-0001",
+        "dsid_675719b813ed4030b65514ca79e67ef8-0002"
+      ],
+      "hit_sample": [
+        "dsid_7225653e4f60432f9530e4af73b4f236-0001",
+        "dsid_128de43d0f714efea626f2f0749a950d-0002",
+        "dsid_150b485e7fd54251b937ab3d08a850dc-0000",
+        "dsid_5cc5eea832864e85a2c7b90b8cd207b7-0002",
+        "dsid_2e3c02ba05684304a74b2e2844559d55-0003"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0311",
+      "question": "For the Helios vendor onboarding kickoff and demo, which meeting time did they lock in, and what is the Redwood commitment 48 hours after the call?",
+      "expected_answer": "They locked in Wed, 2027-04-21 from 10:00-11:00 AM PT. Redwood committed that within 48 hours after the call they would upload a redacted audit-log sample and complete the Evidence Matrix as much as p",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "intra_document_reasoning",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_a4ab40c6ecf249239d4b426892299048-0002",
+        "dsid_a4ab40c6ecf249239d4b426892299048-0003",
+        "dsid_a4ab40c6ecf249239d4b426892299048-0001"
+      ],
+      "hit_sample": [
+        "dsid_795135f656eb4d98a982583d71c90f6b-0002",
+        "dsid_cf6a4a313c144536a3cfd09f6a9ee12a-0000",
+        "dsid_968d71f5cbb84602bcd357bc9e002922-0003",
+        "dsid_85819052489c45d7b6ba6ed0fce59ec7-0001",
+        "dsid_182c34ee62c54118b48c1390e77cd3ba-0001"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0338",
+      "question": "Who owns the mixed-priority cgroup and soft-quota playbook for multi-tenant inference, and what is the best email or Slack channel to contact for rollout coordination?",
+      "expected_answer": "The playbook is owned by infra-scheduling@redwood.com (eng-infra), with serving-runtime@redwood.com as the secondary owner. For rollout coordination, contact infra-scheduling@redwood.com or open a tic",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "confluence",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "intra_document_reasoning",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_06682ba9559b4b2192ffe6dee7a7abba-0002",
+        "dsid_06682ba9559b4b2192ffe6dee7a7abba-0003",
+        "dsid_06682ba9559b4b2192ffe6dee7a7abba-0000"
+      ],
+      "hit_sample": [
+        "dsid_83afe43f0e584b1bb4eee0468d619fbd-0000",
+        "dsid_e5a4927b296a47ad95ee6347b0b56153-0000",
+        "dsid_e194597196a64c0582f03914d8086bff-0000",
+        "dsid_0e0ac7276c864c63a02586fa07ae85e1-0002",
+        "dsid_9c4fd161a65243c88b649482f8f759ff-0002"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0312",
+      "question": "When is the updated on-call runbook due to be pushed to Confluence, and what is the Confluence path for the on-call runbook?",
+      "expected_answer": "The updated on-call runbook is due to be pushed to Confluence by 2026-08-16, and the Confluence path is internal/runbooks/oncall.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "fireflies",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "intra_document_reasoning",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_c054271735b541ba91e42c4dbe8a4883-0000",
+        "dsid_c054271735b541ba91e42c4dbe8a4883-0001",
+        "dsid_c054271735b541ba91e42c4dbe8a4883-0002"
+      ],
+      "hit_sample": [
+        "dsid_117e5a150aa94adc86295786bd6b7843-0003",
+        "dsid_7b2f4b37dfb642e19d78c5f9d2c43f16-0000",
+        "dsid_ac2fdba09cc24cd98ba60f5da114780c-0000",
+        "dsid_3975d7071de044e6bfbe0011cda8f226-0000",
+        "dsid_bc309d480ea34e0b8bab2b70f05f276e-0000"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0310",
+      "question": "In the on-prem cutover readiness weekly sync meeting, who attended, and what two checkpoint meetings (with dates) were scheduled around the staging soak test?",
+      "expected_answer": "Attendees were Samir Patel, Lila Novak, Diego Ramos (Redwood) and Marco Rivera, Priya Singh, Ethan Cole (Aurelia). They scheduled a pre-soak check on 2026-10-06 and a full post-soak review on 2026-10-",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "fireflies",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "intra_document_reasoning",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_b9025f196ac14b2cb7a2905654dd42d7-0001",
+        "dsid_b9025f196ac14b2cb7a2905654dd42d7-0002",
+        "dsid_b9025f196ac14b2cb7a2905654dd42d7-0000"
+      ],
+      "hit_sample": [
+        "dsid_c3e614db01ec4e0bac925567082d4a70-0003",
+        "dsid_9ed01291d81947f49500df5fb28ab724-0001",
+        "dsid_f3789482248a4917a86fe840f1b6b5d8-0000",
+        "dsid_9c63777c789c4f7db9e391024dd887ae-0000",
+        "dsid_99306e137cb6405c98e774decd046922-0001"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0437",
+      "question": "Across all incident postmortems, which Redwood team was assigned the most follow-up action items?",
+      "expected_answer": "The **Platform** team was assigned the most follow-up action items across all incident postmortems, with **16** total.",
+      "len_bucket": "long (>4.5k / 5+ chunks)",
+      "source": "confluence",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "completeness",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_98943148c00b42db859ec2d84649fe04-0002",
+        "dsid_d373a0708d4144d684e495c52c16448a-0000",
+        "dsid_ed145ed8c9234a6681359188e2f43345-0001"
+      ],
+      "hit_sample": [
+        "dsid_2815a8da8f45497a879377bf8254a126-0000",
+        "dsid_220c9f74803846d2850d7b713fa0b4f6-0001",
+        "dsid_01eaeaf6045941beaeaf74e6170aceea-0000",
+        "dsid_e37c044cb6054d20bb081151835741c5-0000",
+        "dsid_2c77a0bc8ae74103926800a608368763-0000"
+      ],
+      "evidence_chars": 20624,
+      "n_docs": 9
+    },
+    {
+      "question_id": "qst_0320",
+      "question": "If NimbleHealth moves from the current roughly 35k per month run rate to a 24 month annual prepay, what term discount do they get and what one time onboarding credit applies in Q1?",
+      "expected_answer": "For a 24-month prepay, Redwood offers a 20% term discount on standard usage rates. They also offer a one-time onboarding credit equal to 5% of Year 1 committed spend, applied to the Q1 invoice (condit",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "intra_document_reasoning",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_e052daca29064eb5ba2b1b0f046fbb84-0001",
+        "dsid_e052daca29064eb5ba2b1b0f046fbb84-0002",
+        "dsid_e052daca29064eb5ba2b1b0f046fbb84-0000"
+      ],
+      "hit_sample": [
+        "dsid_d7cfa5d90fb142bcbd125443a3b0834c-0002",
+        "dsid_3895c19df27f4faba4060fcc7ed8c4a6-0000",
+        "dsid_d93aed75845e4a0b8126a80d8a7a5a41-0000",
+        "dsid_9b44585b47884906bec2e2afeab9fcc5-0001",
+        "dsid_d7cfa5d90fb142bcbd125443a3b0834c-0003"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0420",
+      "question": "For EXP-002 (eu-west\u2192us-east), what egress cost rate and measurement basis does the cost penalty catalog use?",
+      "expected_answer": "Use GiB-based billing: track cross-region egress in GiB from the provider bill and attribute it back to request traces via sampled bytes; the catalog rate is +$0.085 per GiB (roughly +$160-$260/hour a",
+      "len_bucket": "long (>4.5k / 5+ chunks)",
+      "source": "confluence",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "conflicting_info",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_7b2f4b37dfb642e19d78c5f9d2c43f16-0000",
+        "dsid_4e65166659394a90922be6a5c7b110a8-0000",
+        "dsid_4e65166659394a90922be6a5c7b110a8-0001"
+      ],
+      "hit_sample": [
+        "dsid_e22d435a2d9e4fae8ef1c0f83c6f487d-0003",
+        "dsid_f952b60df24d4736b831a643993aee67-0002",
+        "dsid_bf938e309005410582cc2a9db8a6ccb0-0001",
+        "dsid_214144f9a49644409f4cd3ecd8fa1027-0002",
+        "dsid_85bc31ebe5de4cf7bd0fc36f5d3e5ad8-0001"
+      ],
+      "evidence_chars": 7998,
+      "n_docs": 2
+    },
+    {
+      "question_id": "qst_0428",
+      "question": "What monthly token volume discount breakpoints apply for Hosted pricing in the enterprise playbook?",
+      "expected_answer": "Use the updated Hosted volume discount breakpoints of 250k, 2M, and 10M monthly tokens (the older 100k/1M/5M breakpoints are outdated; the working draft also notes to confirm the final breakpoints wit",
+      "len_bucket": "long (>4.5k / 5+ chunks)",
+      "source": "confluence",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "conflicting_info",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_10559147d3014931898864f22c311e47-0002",
+        "dsid_10559147d3014931898864f22c311e47-0003",
+        "dsid_10559147d3014931898864f22c311e47-0001"
+      ],
+      "hit_sample": [
+        "dsid_329c087592b249cb9a6bcc5f9794d26b-0003",
+        "dsid_c52c609c0cdf4211a7e8c57bb1da72e4-0000",
+        "dsid_7a28c10205024082a88c23934540dd21-0000",
+        "dsid_d27579e541ab472fbc8801ff4b6faf32-0000",
+        "dsid_5a277c2a644341baa263778ec36e13a6-0000"
+      ],
+      "evidence_chars": 7997,
+      "n_docs": 2
+    },
+    {
+      "question_id": "qst_0450",
+      "question": "How many Fireflies sales-call transcripts mention a customer requirement for data residency (keeping data in a specific region/country)?",
+      "expected_answer": "8 transcripts mention a customer requirement for data residency (e.g., EU-only, UK-only, Germany-only, US-only/us\u2011east\u20111, or strict in-country processing).",
+      "len_bucket": "long (>4.5k / 5+ chunks)",
+      "source": "fireflies",
+      "strategy": "hybrid",
+      "pattern": "cross_document",
+      "question_type": "completeness",
+      "any_hit": false,
+      "prec": 0.0,
+      "error": 1,
+      "gold_sample": [
+        "dsid_5013219e53bb483cb9244fc16828d88c-0001",
+        "dsid_c875ada2f9164277aa9500daa4753c68-0000",
+        "dsid_c637bbc9afd344e6aebde62826284a06-0000"
+      ],
+      "hit_sample": [
+        "dsid_823c79939aab4eaa843108710a831c14-0003",
+        "dsid_6d3e0fd1c48b466e9f5a4a5b0a1127a0-0000",
+        "dsid_6fc6a90cd2d044e5add05493803e64d1-0002",
+        "dsid_6fc6a90cd2d044e5add05493803e64d1-0000",
+        "dsid_eb9f7314dd10443fbf70a80306d5119a-0003"
+      ],
+      "evidence_chars": 21726,
+      "n_docs": 8
+    }
+  ],
+  "low_precision_hits": [
+    {
+      "question_id": "qst_0165",
+      "question": "What was the agreed condition and timing for approving the additional senior infrastructure engineering hire under the hiring freeze plan?",
+      "expected_answer": "The additional senior infra hire was agreed to be a gated approval: run a 6-week gate review requiring demonstrable latency and incident improvements (including a >20% incident reduction), and if the ",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_614b42d654ba42e1abaa5163da75bc13-0002",
+        "dsid_614b42d654ba42e1abaa5163da75bc13-0003",
+        "dsid_614b42d654ba42e1abaa5163da75bc13-0001"
+      ],
+      "hit_sample": [
+        "dsid_614b42d654ba42e1abaa5163da75bc13-0003",
+        "dsid_5c05d2a74c484906852925d1cf1daa70-0001",
+        "dsid_fefc89a2f1dd49ea8ed9edf630494298-0001",
+        "dsid_5323aeb9f89042c9a62505d409c4d94a-0000",
+        "dsid_ca3e30d85e98425fa9fb7dc6df9925ee-0001"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0101",
+      "question": "In the meeting about Zephyrus Labs unit cost and deployment options, what utilization threshold was mentioned as the point where a dedicated reserved setup typically becomes cheaper than hosted?",
+      "expected_answer": "They mentioned that Dedicated typically becomes cheaper than hosted when you're using more than about ~65% of the reserved token throughput over the month.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "fireflies",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_e37e7b7723e34b8087ef051804bfe85e-0001",
+        "dsid_e37e7b7723e34b8087ef051804bfe85e-0003",
+        "dsid_e37e7b7723e34b8087ef051804bfe85e-0002"
+      ],
+      "hit_sample": [
+        "dsid_4b43f15286104821a5960e5c6f9d18ab-0001",
+        "dsid_840fad493b514c019fadcd21f1eb65b0-0001",
+        "dsid_daa8c08396f54faa9e7da0392cfce503-0003",
+        "dsid_e37e7b7723e34b8087ef051804bfe85e-0000",
+        "dsid_0c4cd3783eb34913b7f975550deb32b2-0002"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0266",
+      "question": "In the recent SDK update that made streaming behave the same across Python, TypeScript, and Go, what is the new wrapper layer called that handles automatic reauthentication on expired credentials and lets a client resume a dropped stream using a small persisted checkpoint token?",
+      "expected_answer": "It's called the **SessionDecorator**-a lightweight wrapper around the stream iterator that automatically refreshes expired credentials and supports resuming via a small persisted **ResumeToken v2** ch",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_415b72b7d40a405e87b9671946e894d8-0002",
+        "dsid_415b72b7d40a405e87b9671946e894d8-0003",
+        "dsid_415b72b7d40a405e87b9671946e894d8-0001"
+      ],
+      "hit_sample": [
+        "dsid_415b72b7d40a405e87b9671946e894d8-0000",
+        "dsid_88b39d13bd584ef8b1422d76994808c7-0000",
+        "dsid_aaa9e364e8ad49bc95fdb2a8a38e06ec-0000",
+        "dsid_61b305d0e85d496b8aa7d1051db17026-0000",
+        "dsid_0a2b5b1fdb4a463d94230a532a23576e-0000"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0232",
+      "question": "In our agent runtime, parallel tool responses sometimes stomp each other and the final structured payload varies run to run; where is the proposal that adds a deterministic way to combine overlapping JSON outputs plus per-invocation jittered exponential retry limits to prevent retry storms?",
+      "expected_answer": "It's in the proposal/PR titled \"tool-result-merge-policy-and-exponential-backoff-for-parallel-calls,\" which introduces deterministic tool result merge policies (including depth-aware merge_patch) and ",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_b253f5cc715f4d47bdd578edd6f2f19e-0001",
+        "dsid_b253f5cc715f4d47bdd578edd6f2f19e-0003",
+        "dsid_b253f5cc715f4d47bdd578edd6f2f19e-0002"
+      ],
+      "hit_sample": [
+        "dsid_b253f5cc715f4d47bdd578edd6f2f19e-0000",
+        "dsid_964e331b03614daf8a085fb2497424ac-0000",
+        "dsid_00a4c3da304d494193c78bbcf7c41a7d-0000",
+        "dsid_c49a9fdc3b40479d8146557d24bab504-0000",
+        "dsid_c7860fdbc17a48b0b6c5f9a0c5e3d054-0000"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0069",
+      "question": "In an ops day log about GPU rebalancing and brief west region network instability, what was the target slot capacity for the small hosted pool in the slot metrics dashboard?",
+      "expected_answer": "The slot-metrics dashboard target pool size for the small hosted pool (hosted-small) was 4,200 slots.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "google_drive",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_6d38a7bff5c84270adff95742a3eebce-0001",
+        "dsid_6d38a7bff5c84270adff95742a3eebce-0003",
+        "dsid_6d38a7bff5c84270adff95742a3eebce-0002"
+      ],
+      "hit_sample": [
+        "dsid_d3edd63b9ec54523ad12bd9be3d7e996-0000",
+        "dsid_6d38a7bff5c84270adff95742a3eebce-0002",
+        "dsid_ed145ed8c9234a6681359188e2f43345-0000",
+        "dsid_f735f8bc504d4f37bc14729275eec3d3-0000",
+        "dsid_2aa88546569b4fc6a1a5eee4a97ffda9-0002"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0166",
+      "question": "What procurement target date did ClearPath Health give for signing an agreement after the streaming model benchmark and security review?",
+      "expected_answer": "ClearPath Health's procurement target is to have an agreement signed by the end of Q1 2027, assuming the benchmarks and security checks align.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "gmail",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_10d018b9cd334ababafa960517492a77-0003",
+        "dsid_10d018b9cd334ababafa960517492a77-0001",
+        "dsid_10d018b9cd334ababafa960517492a77-0000"
+      ],
+      "hit_sample": [
+        "dsid_e04776cee2964731b96192cae88e9e6b-0000",
+        "dsid_6d9e9b1cad1c487e9f9d91ec38582916-0002",
+        "dsid_afd035ae288940dd820b92b080143e68-0003",
+        "dsid_10d018b9cd334ababafa960517492a77-0000",
+        "dsid_f00ae3db94ee431fb620cb0f4f7efc84-0003"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0102",
+      "question": "What are the default significance threshold and minimum sample size guidelines for deciding whether a model regression is actionable in the causal regression investigation handbook?",
+      "expected_answer": "The handbook's default significance threshold is a two-sided p-value < 0.01 for primary SLOs. Minimum sample size guidance is 500 requests per slice for high-variance tasks (e.g., chat/long-context) a",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "confluence",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_e044274a9d184700bb8cdf9ddb6d9d02-0002",
+        "dsid_e044274a9d184700bb8cdf9ddb6d9d02-0000",
+        "dsid_e044274a9d184700bb8cdf9ddb6d9d02-0001"
+      ],
+      "hit_sample": [
+        "dsid_e044274a9d184700bb8cdf9ddb6d9d02-0000",
+        "dsid_5cde26f232454906879617dab1800fae-0002",
+        "dsid_4a039d2fdaad492e804567fc58c5baf4-0001",
+        "dsid_38ddce87e36046df9749d9883dbfeeda-0003",
+        "dsid_92d0d471ddc941288bcb51b3ded6ec36-0002"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0125",
+      "question": "What is the formula used by the new autoscaling approach that combines a high-percentile request rate with request variability to compute effective demand, including the default weights?",
+      "expected_answer": "Effective demand is computed as: effective_demand = alpha * p95_rate + beta * sqrt(variance), with default weights alpha = 1.0 and beta = 0.5.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "github",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_302783937bc849ecb7ef7323233d1efe-0001",
+        "dsid_302783937bc849ecb7ef7323233d1efe-0000",
+        "dsid_302783937bc849ecb7ef7323233d1efe-0002"
+      ],
+      "hit_sample": [
+        "dsid_dc9df99fcfd64f5f89791781b699610c-0000",
+        "dsid_5a277c2a644341baa263778ec36e13a6-0000",
+        "dsid_302783937bc849ecb7ef7323233d1efe-0001",
+        "dsid_1b8cab67207b48ca96330ed170a13454-0000",
+        "dsid_6ccfa22d1404402e9cbb7e944bcf4aa3-0003"
+      ],
+      "evidence_chars": 3999,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0196",
+      "question": "In the quick A100 microbenchmark notes comparing 4-bit weight compression to half precision on a 7B model at single-item batching, what speedup and quality hit were observed for the simplest run?",
+      "expected_answer": "For the simplest A100 batch=1 run, NF4 post-training quantization on the 7B model achieved about a 1.8\u00d7 token-throughput speedup versus fp16, with an estimated quality hit of roughly +0.6 perplexity o",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "google_drive",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "semantic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_3413f1905a0740d88b66c196b54f4df5-0001",
+        "dsid_3413f1905a0740d88b66c196b54f4df5-0000",
+        "dsid_3413f1905a0740d88b66c196b54f4df5-0002"
+      ],
+      "hit_sample": [
+        "dsid_e5796f5f55db4e4dbe06fe17aa3e19eb-0003",
+        "dsid_3413f1905a0740d88b66c196b54f4df5-0000",
+        "dsid_7764c4d15ed141ecbeaaecf606098288-0001",
+        "dsid_49d64735870b48b79f1e6f2724f1e7e2-0001",
+        "dsid_1b021d3f3e0a4e848e2b51e5ffad976b-0002"
+      ],
+      "evidence_chars": 4000,
+      "n_docs": 1
+    },
+    {
+      "question_id": "qst_0025",
+      "question": "In the enterprise tenant cutover go-live runbook, what latency threshold triggers escalation based on the 95th percentile being too high, and how long does it need to be sustained?",
+      "expected_answer": "Escalation is triggered if P95 latency exceeds 2000 ms and stays above that level for 10 minutes.",
+      "len_bucket": "medium (2.5\u20134.5k / 3\u20134 chunks)",
+      "source": "confluence",
+      "strategy": "vector",
+      "pattern": "lookup",
+      "question_type": "basic",
+      "any_hit": true,
+      "prec": 0.2,
+      "error": 0,
+      "gold_sample": [
+        "dsid_9c8cb10d65324c03a8ededbd98c1b058-0001",
+        "dsid_9c8cb10d65324c03a8ededbd98c1b058-0002",
+        "dsid_9c8cb10d65324c03a8ededbd98c1b058-0000"
+      ],
+      "hit_sample": [
+        "dsid_77d70426ff9545c191fa5e64f4a398b2-0002",
+        "dsid_77d70426ff9545c191fa5e64f4a398b2-0003",
+        "dsid_f8b651a683044ad8964f34f881c63152-0003",
+        "dsid_9c8cb10d65324c03a8ededbd98c1b058-0000",
+        "dsid_5428d37c3e674dbf97ebb1d4ee73bcbd-0003"
+      ],
+      "evidence_chars": 3998,
+      "n_docs": 1
+    }
+  ],
+  "len_bucket_counts_all_eval": {
+    "medium (2.5\u20134.5k / 3\u20134 chunks)": 72,
+    "long (>4.5k / 5+ chunks)": 28,
+    "short (<2.5k / \u22642 chunks)": 4,
+    "graph_struct (no free-text span)": 46
+  },
+  "source_counts_all_eval": {
+    "gmail": 21,
+    "fireflies": 13,
+    "github": 15,
+    "confluence": 43,
+    "google_drive": 12,
+    "graph_seed": 46
+  }
+}
