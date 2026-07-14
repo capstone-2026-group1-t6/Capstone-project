@@ -1,17 +1,63 @@
+"""Provider-agnostic LLM client via the OpenAI-compatible chat API.
+
+Works with:
+  - Cerebras free — recommended for full eval when Groq TPM is too tight
+  - Google Gemini (AI Studio OpenAI-compatible endpoint)
+  - Groq (default if base URL unset)
+  - OpenRouter and other OpenAI-compatible endpoints
+
+Configure via:
+  RAGPLATFORM_LLM_API_KEY
+  RAGPLATFORM_LLM_API_BASE
+  RAGPLATFORM_LLM_MODEL
+"""
+
 import json
-from groq import AsyncGroq
+
+from openai import AsyncOpenAI
+
 from app.core.config import settings
 from app.core.observability import logger
+
+# Groq OpenAI-compatible endpoint (used when llm_api_base is empty).
+_GROQ_OPENAI_BASE = "https://api.groq.com/openai/v1"
+_GROQ_DEFAULT_MODEL = "llama-3.1-8b-instant"
+
+# Cerebras free OpenAI-compatible endpoint.
+CEREBRAS_OPENAI_BASE = "https://api.cerebras.ai/v1"
+# Public catalog rotates; see https://inference-docs.cerebras.ai/models/overview
+CEREBRAS_DEFAULT_MODEL = "gpt-oss-120b"
+
+# Gemini OpenAI-compatible endpoint (set RAGPLATFORM_LLM_API_BASE to this).
+GEMINI_OPENAI_BASE = "https://generativelanguage.googleapis.com/v1beta/openai/"
+GEMINI_DEFAULT_MODEL = "gemini-2.0-flash"
+
 
 class LLMClient:
     def __init__(self):
         api_key = settings.llm_api_key or "dummy_key_replace_in_env"
-        
-        self.client = AsyncGroq(
-            api_key=api_key
-        )
-        # Using Llama 3.3 70B Versatile on Groq for reliable reasoning and JSON output
-        self.model = "llama-3.3-70b-versatile"
+        base = (settings.llm_api_base or "").strip()
+        model = (settings.llm_model or "").strip()
+
+        if not base:
+            # Backward-compatible default: Groq free/on_demand (tight TPM).
+            base = _GROQ_OPENAI_BASE
+            if not model:
+                model = _GROQ_DEFAULT_MODEL
+        elif not model:
+            # Sensible model defaults by provider base URL.
+            if "generativelanguage.googleapis.com" in base:
+                model = GEMINI_DEFAULT_MODEL
+            elif "api.groq.com" in base:
+                model = _GROQ_DEFAULT_MODEL
+            elif "cerebras.ai" in base:
+                model = CEREBRAS_DEFAULT_MODEL
+            else:
+                model = _GROQ_DEFAULT_MODEL
+
+        self.model = model
+        self.client = AsyncOpenAI(api_key=api_key, base_url=base)
+        logger.info("LLMClient ready model=%s base=%s", self.model, base)
 
     async def complete(self, query: str, messages: list[dict], context: str) -> str:
         prompt = (
@@ -27,22 +73,23 @@ class LLMClient:
             "- Only refuse if the context is completely empty or unrelated.\n\n"
             f"CONTEXT:\n{context}"
         )
-        
-        # Build message list from history
+
         api_messages = [{"role": "system", "content": prompt}]
         for msg in messages:
-            api_messages.append({
-                "role": msg.get("role", "user"),
-                "content": msg.get("content", "")
-            })
-            
+            api_messages.append(
+                {
+                    "role": msg.get("role", "user"),
+                    "content": msg.get("content", ""),
+                }
+            )
+
         api_messages.append({"role": "user", "content": query})
-        
+
         try:
             response = await self.client.chat.completions.create(
                 model=self.model,
                 messages=api_messages,
-                temperature=0.0
+                temperature=0.0,
             )
             return response.choices[0].message.content or ""
         except Exception as e:
@@ -76,31 +123,34 @@ class LLMClient:
             '  "collaborates_with": [{"person_a": "string", "person_b": "string"}]\n'
             "}"
         )
-        
+
         try:
             response = await self.client.chat.completions.create(
                 model=self.model,
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"TEXT TO EXTRACT FROM:\n{text[:10000]}"}
+                    {"role": "user", "content": f"TEXT TO EXTRACT FROM:\n{text[:10000]}"},
                 ],
                 temperature=0.0,
-                response_format={"type": "json_object"}
+                response_format={"type": "json_object"},
             )
-            
+
             content = response.choices[0].message.content or "{}"
-            # Clean up if the LLM still wrapped it in markdown despite instructions
             if content.startswith("```json"):
                 content = content[7:-3].strip()
             elif content.startswith("```"):
                 content = content[3:-3].strip()
-                
+
             return json.loads(content)
         except Exception as e:
             logger.exception("LLM graph extraction failed")
             return {
-                "people": [], "projects": [],
-                "reports_to": [], "owns": [], "works_on": [], "collaborates_with": []
+                "people": [],
+                "projects": [],
+                "reports_to": [],
+                "owns": [],
+                "works_on": [],
+                "collaborates_with": [],
             }
 
     async def generate_cypher(self, query: str) -> str | None:
@@ -125,33 +175,34 @@ class LLMClient:
             "3. The `text` alias should be a human-readable sentence explaining the match.\n"
             "4. The `score` alias should be exactly `1.0`.\n"
             "5. The `source` alias should be exactly `'graph:dynamic'`.\n"
-            "6. Example return clause: `RETURN p.name + ' reports to ' + m.name AS text, p.name+'_reports_to_'+m.name AS id, 1.0 AS score, 'graph:dynamic' AS source`\n"
-            "7. Do NOT include any markdown formatting, backticks, or explanation. Output ONLY the raw Cypher query string.\n"
+            "6. Example return clause: `RETURN p.name + ' reports to ' + m.name AS text, "
+            "p.name+'_reports_to_'+m.name AS id, 1.0 AS score, 'graph:dynamic' AS source`\n"
+            "7. Do NOT include any markdown formatting, backticks, or explanation. "
+            "Output ONLY the raw Cypher query string.\n"
             "8. Use `(?i)` or `toLower()` for case-insensitive matching if necessary.\n"
             "9. If the question cannot be answered by this schema, respond exactly with: NONE"
         )
-        
+
         try:
             response = await self.client.chat.completions.create(
                 model=self.model,
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": query}
+                    {"role": "user", "content": query},
                 ],
-                temperature=0.0
+                temperature=0.0,
             )
-            
-            content = response.choices[0].message.content.strip()
-            
+
+            content = (response.choices[0].message.content or "").strip()
+
             if content.upper() == "NONE" or not content.upper().startswith("MATCH"):
                 return None
-                
-            # Clean up if the LLM still wrapped it in markdown
+
             if content.startswith("```cypher"):
                 content = content[9:-3].strip()
             elif content.startswith("```"):
                 content = content[3:-3].strip()
-                
+
             return content
         except Exception as e:
             logger.exception("LLM Cypher generation failed")

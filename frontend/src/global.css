@@ -28,3 +28,102 @@ body {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+/* Assistant Markdown (react-markdown + GFM tables) */
+.chat-markdown {
+  overflow-x: auto;
+}
+
+.chat-markdown p {
+  margin: 0.4em 0;
+}
+
+.chat-markdown p:first-child {
+  margin-top: 0;
+}
+
+.chat-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-markdown strong {
+  font-weight: 600;
+}
+
+.chat-markdown ul,
+.chat-markdown ol {
+  margin: 0.4em 0;
+  padding-left: 1.25rem;
+}
+
+.chat-markdown li {
+  margin: 0.15em 0;
+}
+
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3 {
+  font-weight: 600;
+  margin: 0.6em 0 0.3em;
+  line-height: 1.3;
+}
+
+.chat-markdown h1 { font-size: 1.1em; }
+.chat-markdown h2 { font-size: 1.05em; }
+.chat-markdown h3 { font-size: 1em; }
+
+.chat-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6em 0;
+  font-size: 0.85em;
+}
+
+.chat-markdown th,
+.chat-markdown td {
+  border: 1px solid #e5e7eb;
+  padding: 0.4rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.chat-markdown th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+.chat-markdown tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+.chat-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9em;
+  background: #f3f4f6;
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+}
+
+.chat-markdown pre {
+  margin: 0.5em 0;
+  padding: 0.6rem 0.75rem;
+  overflow-x: auto;
+  background: #f3f4f6;
+  border-radius: 0.5rem;
+}
+
+.chat-markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.chat-markdown a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.chat-markdown hr {
+  margin: 0.75em 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}

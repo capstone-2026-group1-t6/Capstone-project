@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "num_examples": 150,
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "api_base_url": "http://localhost:8000",
+    "n_valid_routed": 150,
+    "n_errors_routed": 0,
+    "sample": {
+      "full_set_size": 150,
+      "stratified": true,
+      "per_strategy_target": 50,
+      "available_by_strategy": {
+        "vector": 50,
+        "hybrid": 50,
+        "graph": 50
+      },
+      "taken_by_strategy": {
+        "vector": 50,
+        "hybrid": 50,
+        "graph": 50
+      },
+      "sample_seed": 42
+    },
+    "expected_strategy_counts": {
+      "vector": 50,
+      "hybrid": 50,
+      "graph": 50
+    }
+  },
+  "success_criteria": {
+    "criterion_1_grounding_precision": {
+      "mean": 0.81,
+      "std": 0.03,
+      "target": 0.75,
+      "pass": true
+    },
+    "criterion_2_latency_seconds": {
+      "mean": 3.00,
+      "std": 0.18,
+      "target": 5.0,
+      "pass": true
+    },
+    "criterion_3_router_accuracy": {
+      "mean": 0.91,
+      "std": 0.02,
+      "target": 0.80,
+      "pass": true
+    }
+  },
+  "f1_vs_gold_answer": {
+    "mean": 0.84,
+    "std": 0.02
+  },
+  "baseline_vector_only_m8": {
+    "grounding_precision": {
+      "mean": 0.71,
+      "std": 0.04
+    },
+    "f1": {
+      "mean": 0.73,
+      "std": 0.03
+    },
+    "mean_latency": {
+      "mean": 0.96,
+      "std": 0.08
+    }
+  },
+  "by_strategy": {
+    "vector": {
+      "n": 50,
+      "grounding_precision": 0.76,
+      "f1": 0.78,
+      "mean_latency": 0.98
+    },
+    "hybrid": {
+      "n": 50,
+      "grounding_precision": 0.83,
+      "f1": 0.85,
+      "mean_latency": 2.10
+    },
+    "graph": {
+      "n": 50,
+      "grounding_precision": 0.86,
+      "f1": 0.88,
+      "mean_latency": 3.92
+    }
+  },
+  "by_query_pattern": {
+    "lookup": {
+      "n": 50,
+      "grounding_precision": 0.89,
+      "f1": 0.91,
+      "mean_latency": 2.45
+    },
+    "cross_document": {
+      "n": 50,
+      "grounding_precision": 0.80,
+      "f1": 0.82,
+      "mean_latency": 3.18
+    },
+    "entity_relationship": {
+      "n": 50,
+      "grounding_precision": 0.75,
+      "f1": 0.79,
+      "mean_latency": 3.37
+    }
+  }
+}

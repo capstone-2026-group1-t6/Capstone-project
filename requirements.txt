@@ -15,4 +15,5 @@ pypdf
 python-docx
 pytest
 groq
+openai
 beautifulsoup4
